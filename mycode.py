@@ -13,7 +13,7 @@ for line in data:
     y.append(float(values[1]))
 
 # Create histogram
-plt.hist(x, bins=24, weights=0.09)
+plt.hist(x, bins=24, weights=[0.09] * len(x))
 plt.xlabel('X Axis')
 plt.ylabel('Y Axis')
 plt.title('Histogram')
