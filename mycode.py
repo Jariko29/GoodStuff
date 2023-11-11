@@ -18,5 +18,3 @@ plt.xlabel('X Axis')
 plt.ylabel('Y Axis')
 plt.title('Histogram')
 plt.show()
-
-kk
