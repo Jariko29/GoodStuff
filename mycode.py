@@ -12,12 +12,11 @@ for line in data:
     x.append(float(values[0]))
     y.append(float(values[1]))
 
-xy = list(zip(x, y))
-# Create histogram
-plt.hist(xy, bins=24)
+# Create bar chart
+plt.bar(x, y)
 plt.xlabel('X Axis')
 plt.ylabel('Y Axis')
-plt.title('Histogram')
-plt.savefig('histogram.png')
+plt.title('Bar Chart')
+plt.savefig('barchart.png')
 print('Done')
 quit()
