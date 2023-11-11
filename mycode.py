@@ -12,9 +12,9 @@ for line in data:
     x.append(float(values[0]))
     y.append(float(values[1]))
 
-print(x)
+xy = list(zip(x, y))
 # Create histogram
-plt.hist(x, bins=24, color='green', histtype='bar', rwidth=0.8)
+plt.hist(xy, bins=24)
 plt.xlabel('X Axis')
 plt.ylabel('Y Axis')
 plt.title('Histogram')
