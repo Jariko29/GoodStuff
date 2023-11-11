@@ -13,7 +13,7 @@ for line in data:
     y.append(float(values[1]))
 
 # Create bar chart
-plt.bar(x, y)
+plt.bar(x, y, color='blue', width=0.1)
 plt.xlabel('X Axis')
 plt.ylabel('Y Axis')
 plt.title('Bar Chart')
