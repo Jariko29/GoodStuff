@@ -1,3 +1,5 @@
+import matplotlib
+matplotlib.use('TkAgg')  # or 'GTKAgg', 'QT4Agg', 'QT5Agg'
 import matplotlib.pyplot as plt
 
 # Read data from file
