@@ -1,5 +1,3 @@
-import matplotlib
-matplotlib.use('TkAgg')  # or 'GTKAgg', 'QT4Agg', 'QT5Agg'
 import matplotlib.pyplot as plt
 
 # Read data from file
@@ -20,6 +18,6 @@ plt.hist(x, bins=24, weights=[0.09] * len(x))
 plt.xlabel('X Axis')
 plt.ylabel('Y Axis')
 plt.title('Histogram')
-plt.show()
+plt.savefig('histogram.png')
 print('Done')
 quit()
