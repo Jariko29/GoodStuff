@@ -14,7 +14,7 @@ for line in data:
 
 print(x)
 # Create histogram
-plt.hist(x, bins=24, weights=[0.09] * len(x))
+plt.hist(x, bins=24, color='green', histtype='bar', rwidth=0.8)
 plt.xlabel('X Axis')
 plt.ylabel('Y Axis')
 plt.title('Histogram')
