@@ -11,12 +11,13 @@ for line in data:
     x.append(float(values[0]))
     y.append(float(values[1]))
 
-params = maxwell.fit(x, floc=0)
+params = maxwell.fit(y, floc=0)
 print(params)
-R = maxwell.pdf(x, loc=0, scale=1)  
+R = maxwell.pdf(x, *params)  
 print(R)
 
 plt.bar(x, y, color='blue',width = 0.088, edgecolor='black')
+plt.plot(x, R, color='red', linewidth=1)
 plt.xlabel('X Axis')
 plt.ylabel('Y Axis')
 plt.title('Bar Chart')
