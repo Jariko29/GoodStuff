@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from scipy.stats import maxwell
+import scipy.stats as stats
 
 with open('metrisis.txt', 'r') as f:
     data = f.readlines()
@@ -11,12 +11,12 @@ for line in data:
     x.append(float(values[0]))
     y.append(float(values[1]))
 
-R = maxwell.pdf(x, loc=0, scale=1)  
-print(R)
+maxwell = stats.maxwell
+values = maxwell.rvs(loc=0, scale=1, size=1000)
+params = maxwell.fit(values, floc=0)
+print(params)
 
 plt.bar(x, y, color='blue',width = 0.088, edgecolor='black')
-plt.plot(x, R, color='red')
-plt.legend(['Maxwell PDF', 'Data'])
 plt.show()
 plt.xlabel('X Axis')
 plt.ylabel('Y Axis')
