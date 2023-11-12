@@ -24,4 +24,3 @@ plt.title('Bar Chart')
 plt.savefig('barchart.png')
 print('Done')
 quit()
-
