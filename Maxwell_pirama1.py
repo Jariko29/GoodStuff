@@ -12,7 +12,6 @@ for line in data:
     y.append(float(values[1]))
 
 maxwell = stats.maxwell
-values = maxwell.rvs(loc=0, scale=1, size=1000)
 params = maxwell.fit(values, floc=0)
 print(params)
 
