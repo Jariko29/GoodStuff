@@ -1,4 +1,11 @@
+import scipy.integrate as spi
 from scipy.misc import derivative
+import numpy as np 
+
+# Given values
+ℇ = 12.0  # V
+R = 3.0   # Ω
+L = 0.600 # H
 
 # Function for i(t)
 def current(t):
