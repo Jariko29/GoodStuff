@@ -18,4 +18,10 @@ def voltage(t):
 # Integrate to find the energy supplied by the battery
 result, _ = spi.quad(lambda t: voltage(t) * current(t), 0, L/R)
 
+# Integrate to find the energy dissipated in the resistor
+result_resistor, _ = spi.quad(lambda t: R * current(t)**2, 0, L/R)
+
+print(f"The energy dissipated in the resistor is approximately {result_resistor:.2f} Joules.")
+
+
 print(f"The energy supplied by the battery is approximately {result:.2f} Joules.")
