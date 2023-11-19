@@ -1,13 +1,20 @@
-disks = int(input("Enter number of disks: "))
-def move(n, start, finish, temp, counter):
-    if n > 0:
-        counter[0] += 1
-        move(n - 1, start, temp, finish, counter)
-        print(f"Move disk {n} from tower {start} to tower {finish}")
-        move(n - 1, temp, finish, start, counter)
-def main():
-    counter = [0]
-    move(disks, 1, 3, 2, counter)
-    print(f"Total moves: {counter[0]}")
-if __name__ == "__main__":
-    main()
+import scipy.integrate as spi
+import numpy as np
+
+# Given values
+ℇ = 12.0  # V
+R = 3.0   # Ω
+L = 0.600 # H
+
+# Function for i(t)
+def current(t):
+    return ℇ/R * (1 - np.exp(-R/L * t))
+
+# Function for V(t)
+def voltage(t):
+    return R * current(t) + L * np.gradient(current(t), t)
+
+# Integrate to find the energy supplied by the battery
+result, _ = spi.quad(lambda t: voltage(t) * current(t), 0, L/R)
+
+print(f"The energy supplied by the battery is approximately {result:.2f} Joules.")
