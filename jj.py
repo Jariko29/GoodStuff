@@ -23,5 +23,10 @@ result_resistor, _ = spi.quad(lambda t: R * current(t)**2, 0, L/R)
 
 print(f"The energy dissipated in the resistor is approximately {result_resistor:.2f} Joules.")
 
+# Integrate to find the energy stored in the inductor
+result_inductor, _ = spi.quad(lambda t: L * np.gradient(current(t), t) * current(t), 0, L/R)
+
+print(f"The energy stored in the inductor is approximately {result_inductor:.2f} Joules.")
+
 
 print(f"The energy supplied by the battery is approximately {result:.2f} Joules.")
