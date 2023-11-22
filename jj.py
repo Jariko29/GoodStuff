@@ -43,3 +43,8 @@ if math.isclose(V_total, Vm, rel_tol=1e-9):
     print("The voltages are approximately equal.")
 else:
     print("The voltages are not equal.")
+    
+print("Voltage across the resistor (VR0):", VR0)
+print("Voltage across the inductor (VL0):", VL0)
+print("Voltage across the capacitor (VC0):", VC0)
+print("Total voltage (V_total):", V_total)
