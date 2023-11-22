@@ -1,31 +1,26 @@
-import scipy.integrate as spi
-from scipy.misc import derivative
-import numpy as np 
+import math
 
-# Given values
-ℇ = 12.0  # V
-R = 3.0   # Ω
-L = 0.600 # H
+# Δεδομένα
+Vm = 150  # Μέγιστη τάση
+R = 40.0  # Αντίσταση
+L = 80.0e-3  # Πηνίο αυτεπαγωγής
+C = 50.0e-6  # Πυκνωτής
+frequency = 100  # Συχνότητα
 
-# Function for i(t)
-def current(t):
-    return ℇ/R * (1 - np.exp(-R/L * t))
+# Υπολογισμοί
+Im = Vm / R  # Ρευματική ένταση
+omega = 2 * math.pi * frequency  # Γωνιακή συχνότητα
 
-# Function for V(t)
-def voltage(t):
-    return R * current(t) + L * derivative(current, t, dx=1e-6)
+# Πτώση τάσης στην αντίσταση (VR0)
+VR0 = Im * R
 
-# Integrate to find the energy supplied by the battery
-result, _ = spi.quad(lambda t: voltage(t) * current(t), 0, L/R)
+# Πτώση τάσης στο πηνίο (VL0)
+VL0 = Im * omega * L
 
-# Integrate to find the energy dissipated in the resistor
-result_resistor, _ = spi.quad(lambda t: R * current(t)**2, 0, L/R)
+# Πτώση τάσης στον πυκνωτή (VC0)
+VC0 = Im / (omega * C)
 
-print(f"The energy dissipated in the resistor is approximately {result_resistor:.2f} Joules.")
-
-# Integrate to find the energy stored in the inductor
-result_inductor, _ = spi.quad(lambda t: L * derivative(current, t, dx=1e-6) * current(t), 0, L/R)
-
-print(f"The energy stored in the inductor is approximately {result_inductor:.2f} Joules.")
-
-print(f"The energy supplied by the battery is approximately {result:.2f} Joules.")
+# Εκτύπωση αποτελεσμάτων
+print(f"VR0: {VR0} V")
+print(f"VL0: {VL0} V")
+print(f"VC0: {VC0} V")
