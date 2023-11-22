@@ -19,8 +19,12 @@ Z_C = 1 / (1j * omega * C)
 # Total impedance
 Z_total = Z_R + Z_L + Z_C
 
+print("Total impedance:", Z_total)
+
 # Current in the circuit
 I = Vm / abs(Z_total)
+
+print("Current in the circuit:", I)
 
 # Voltages across the resistor, inductor, and capacitor
 VR0 = I * abs(Z_R)
