@@ -21,3 +21,5 @@ plt.ylabel('Charge (C) / Current (A)')
 plt.legend()
 plt.grid(True)
 plt.show()
+
+quit()
