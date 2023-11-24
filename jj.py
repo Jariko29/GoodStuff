@@ -1,18 +1,23 @@
-import math
+import numpy as np
+import matplotlib.pyplot as plt
 
-# Δεδομένα
-Vm = 150.0  # Μέγιστη τιμή της AC τάσης σε volts
-w = 100 * 2 * math.pi  # Συχνότητα σε rad/s
-R = 40.0  # Αντίσταση σε ohms
-L = 80.0e-3  # Αυτεπαγωγή σε henrys
-C = 50.0e-6  # Χωρητικότητα σε farads
+# Circuit parameters
+C = 1.0  # Capacitance (in Farads)
+L = 1.0  # Inductance (in Henrys)
+R = 1.0  # Resistance (in Ohms)
 
-# Υπολογισμός μέγιστων τιμών πτώσεων δυναμικού
-VR0 = Vm  # Σταθερή αντίσταση, η πτώση είναι ίση με την τάση
-VL0 = Vm * (w * L)  # Πτώση λόγω του πηνίου
-VC0 = Vm / (w * C)  # Πτώση λόγω του πυκνωτή
+# Time range
+t = np.linspace(0, 10, 1000)  # Time values from 0 to 10 seconds
 
-# Εκτύπωση αποτελεσμάτων
-print("(α) Τάση VR0:", VR0, "V")
-print("(β) Τάση VL0:", VL0, "V")
-print("(γ) Τάση VC0:", VC0, "V")
+# Charge (Q) and current (I) calculations
+Q = np.exp(-R * t / (2 * L)) * np.cos(np.sqrt(1 / (L * C) - (R / (2 * L))**2) * t)
+I = -np.sqrt(1 / (L * C) - (R / (2 * L))**2) * np.exp(-R * t / (2 * L)) * np.sin(np.sqrt(1 / (L * C) - (R / (2 * L))**2) * t)
+
+# Plotting Q(t) and I(t)
+plt.plot(t, Q, label='Q(t)')
+plt.plot(t, I, label='I(t)')
+plt.xlabel('Time (s)')
+plt.ylabel('Charge (C) / Current (A)')
+plt.legend()
+plt.grid(True)
+plt.show()
