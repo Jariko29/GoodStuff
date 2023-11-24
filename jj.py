@@ -14,6 +14,7 @@ Q = np.exp(-R * t / (2 * L)) * np.cos(np.sqrt(1 / (L * C) - (R / (2 * L))**2) * 
 I = -np.sqrt(1 / (L * C) - (R / (2 * L))**2) * np.exp(-R * t / (2 * L)) * np.sin(np.sqrt(1 / (L * C) - (R / (2 * L))**2) * t)
 
 # Plotting Q(t) and I(t)
+plt.figure()
 plt.plot(t, Q, label='Q(t)')
 plt.plot(t, I, label='I(t)')
 plt.xlabel('Time (s)')
