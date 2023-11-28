@@ -3,7 +3,7 @@ import numpy as np
 
 # Sample voltage vs. time data
 time = np.array([0, 1, 2, 3, 4])  # replace with your time values
-voltage = np.array([0, 16, 16, 9, 0])  # replace with your voltage values
+voltage = np.array([0, 16, 16, 9, 0, 0])  # replace with your voltage values
 
 # Calculate the derivative of voltage (dV/dt)
 dV_dt = np.gradient(voltage, time)
