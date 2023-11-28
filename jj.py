@@ -1,26 +1,36 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
-# Circuit parameters
-C = 10.0  # Capacitance (in Farads)
-L = 10.0  # Inductance (in Henrys)
-R = 0.0  # Resistance (in Ohms)
+# Sample voltage vs. time data
+time = np.array([0, 1, 2, 3, 4])  # replace with your time values
+voltage = np.array([0, 1, 4, 9, 16])  # replace with your voltage values
 
-# Time range
-t = np.linspace(0, 120, 1000)  # Time values from 0 to 120 seconds
+# Calculate the derivative of voltage (dV/dt)
+dV_dt = np.gradient(voltage, time)
 
-# Charge (Q) and current (I) calculations
-Q = np.cos(np.sqrt(1 / (L * C)) * t)
-I = -np.sqrt(1 / (L * C)) * np.sin(np.sqrt(1 / (L * C)) * t)
+# Constants
+epsilon_0 = 8.85e-12  # permittivity of free space
+area = 0.001  # area of capacitor plates (replace with your value)
 
-# Plotting Q(t) and I(t)
+# Calculate displacement current (Id)
+displacement_current = epsilon_0 * area * dV_dt
+
+# Plot the graphs
 plt.figure(figsize=(10, 6))
-plt.plot(t, Q, label='Q(t)')
-plt.plot(t, I, label='I(t)')
+
+plt.subplot(2, 1, 1)
+plt.plot(time, voltage, label='Voltage vs. Time')
+plt.title('Voltage vs. Time')
 plt.xlabel('Time (s)')
-plt.ylabel('Charge (C) / Current (A)')
-plt.title('Charge and Current vs Time')
+plt.ylabel('Voltage (V)')
 plt.legend()
-plt.grid(True)
+
+plt.subplot(2, 1, 2)
+plt.plot(time, displacement_current, label='Displacement Current vs. Time', color='orange')
+plt.title('Displacement Current vs. Time')
+plt.xlabel('Time (s)')
+plt.ylabel('Displacement Current (A)')
+plt.legend()
+
+plt.tight_layout()
 plt.show()
-plt.savefig('barchart.png')
