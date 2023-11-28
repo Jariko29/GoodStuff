@@ -14,7 +14,7 @@ area = 0.001  # area of capacitor plates (replace with your value)
 
 # Calculate displacement current (Id)
 displacement_current = epsilon_0 * area * dV_dt
-
+print(dV_dt)
 # Plot the graphs
 plt.figure(figsize=(10, 6))
 
