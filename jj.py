@@ -33,4 +33,5 @@ plt.ylabel('Displacement Current (A)')
 plt.legend()
 
 plt.tight_layout()
+plt.savefig('jj.png')
 plt.show()
