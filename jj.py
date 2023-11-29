@@ -1,37 +1,22 @@
-import matplotlib.pyplot as plt
-import numpy as np
+from sympy import symbols, Eq, solve, cos, sin, rad
 
-# Sample voltage vs. time data
-time = np.array([0, 1, 2, 3, 4, 5])  # replace with your time values
-voltage = np.array([0, 16, 16, 9, 0, 0])  # replace with your voltage values
+# Σύμβολα
+R, Im, phi = symbols('R Im phi')
 
-# Calculate the derivative of voltage (dV/dt)
-dV_dt = np.gradient(voltage, time)
+# Δεδομένα
+omega = 200  # rad/s
+Vin_amplitude = 20
+Vin_phase = 30  # degrees
+L = 0.4  # H
 
-# Constants
-epsilon_0 = 8.85e-12  # permittivity of free space
-area = 0.001  # area of capacitor plates (replace with your value)
+# Εξίσωση για τον όρο που περιέχει την αντίσταση
+eq1 = Eq(Im * R, Vin_amplitude * cos(Vin_phase * rad))
 
-# Calculate displacement current (Id)
-displacement_current = epsilon_0 * area * dV_dt
-print(dV_dt)
-# Plot the graphs
-plt.figure(figsize=(10, 6))
+# Εξίσωση για τον όρο που περιέχει τον όρο του πηνίου
+eq2 = Eq(Im * L * omega, Vin_amplitude * sin(Vin_phase * rad))
 
-plt.subplot(2, 1, 1)
-plt.plot(time, voltage, label='Voltage vs. Time')
-plt.title('Voltage vs. Time')
-plt.xlabel('Time (s)')
-plt.ylabel('Voltage (V)')
-plt.legend()
+# Λύση του συστήματος εξισώσεων
+solution = solve((eq1, eq2), (R, Im, phi))
 
-plt.subplot(2, 1, 2)
-plt.plot(time, displacement_current, label='Displacement Current vs. Time', color='orange')
-plt.title('Displacement Current vs. Time')
-plt.xlabel('Time (s)')
-plt.ylabel('Displacement Current (A)')
-plt.legend()
-
-plt.tight_layout()
-plt.savefig('jj.png')
-plt.show()
+# Εκτύπωση της απάντησης
+print(f"The value of R is: {solution[R]:.2f} ohms")
