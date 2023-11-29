@@ -1,22 +1,18 @@
-from sympy import symbols, Eq, solve, cos, sin, rad
+from sympy import symbols, Eq, solve, tan, rad
 
 # Symbols
-R, Im, phi = symbols('R Im phi')
+R = symbols('R')
 
 # Data
 omega = 200  # rad/s
-Vin_amplitude = 20
-Vin_phase = 30  # degrees
 L = 0.4  # H
+phi = 30  # degrees
 
-# Equation for the term containing the resistance
-eq1 = Eq(Im * R, Vin_amplitude * cos(rad(Vin_phase)))
+# Equation for the resistance
+eq = Eq(R, omega * L / tan(rad(phi)))
 
-# Equation for the term containing the inductor term
-eq2 = Eq(Im * L * omega, Vin_amplitude * sin(rad(Vin_phase)))
-
-# Solve the system of equations
-solution = solve((eq1, eq2), (R, Im))
+# Solve the equation for R
+solution = solve(eq, R)
 
 # Print the solution
-print(solution)
+print(f"The resistance R is {solution[0]} ohms.")
