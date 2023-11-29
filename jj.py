@@ -6,13 +6,17 @@ R = symbols('R')
 # Data
 omega = 200  # rad/s
 L = 0.4  # H
-phi = 30  # degrees
+phi1 = 30  # degrees
+phi2 = -30  # degrees
 
 # Equation for the resistance
-eq = Eq(R, omega * L / tan(rad(phi)))
+eq1 = Eq(R, omega * L / tan(rad(phi1)))
+eq2 = Eq(R, omega * L / tan(rad(phi2)))
 
 # Solve the equation for R
-solution = solve(eq, R)
+solution1 = solve(eq1, R)
+solution2 = solve(eq2, R)
 
-# Print the solution
-print(f"The resistance R is {solution[0]} ohms.")
+# Print the solutions
+print(f"The resistance R for a phase shift of 30 degrees is {solution1[0]} ohms.")
+print(f"The resistance R for a phase shift of -30 degrees is {solution2[0]} ohms.")
