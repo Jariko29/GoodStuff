@@ -1,22 +1,20 @@
-from sympy import symbols, Eq, solve, tan, rad
+import math
 
-# Symbols
-R = symbols('R')
+# Δεδομένα
+mass_astronaut = 80  # Μάζα του αστροναύτη σε κιλά
+distance = 5.0  # Απόσταση που απομακρύνθηκε ο αστροναύτης από τον σταθμό σε μέτρα
+power_laser = 1000  # Ισχύς του laser σε watt
+oxygen_remaining = 10  # Υπόλοιπο οξυγόνου σε ώρες
 
-# Data
-omega = 200  # rad/s
-L = 0.4  # H
-phi1 = 30  # degrees
-phi2 = -30  # degrees
+# Σταθερές
+speed_of_light = 3.0e8  # Ταχύτητα του φωτός σε μέτρα/δευτερόλεπτο
 
-# Equation for the resistance
-eq1 = Eq(R, omega * L / tan(rad(phi1)))
-eq2 = Eq(R, omega * L / tan(rad(phi2)))
+# Υπολογισμοί
+acceleration = (2 * power_laser) / (speed_of_light * mass_astronaut)
+time_to_return = math.sqrt(2 * distance / acceleration)
 
-# Solve the equation for R
-solution1 = solve(eq1, R)
-solution2 = solve(eq2, R)
-
-# Print the solutions
-print(f"The resistance R for a phase shift of 30 degrees is {solution1[0]} ohms.")
-print(f"The resistance R for a phase shift of -30 degrees is {solution2[0]} ohms.")
+# Έλεγχος αν ο χρόνος υπερβαίνει το υπόλοιπο οξυγόνου
+if time_to_return > oxygen_remaining:
+    print("Δεν είναι δυνατή η επιστροφή. Ο χρόνος υπερβαίνει το υπόλοιπο οξυγόνου.")
+else:
+    print(f"Ο αστροναύτης θα χρειαστεί περίπου {time_to_return:.2f} δευτερόλεπτα για να επιστρέψει.")
