@@ -1,20 +1,21 @@
 import math
 
-# Δεδομένα
-mass_astronaut = 80  # Μάζα του αστροναύτη σε κιλά
-distance = 5.0  # Απόσταση που απομακρύνθηκε ο αστροναύτης από τον σταθμό σε μέτρα
-power_laser = 1000  # Ισχύς του laser σε watt
-oxygen_remaining = 10  # Υπόλοιπο οξυγόνου σε ώρες
+# Data
+distance = 5.0  # Distance the astronaut has moved away from the station in meters
+power_laser = 1000  # Power of the laser in watts
+oxygen_remaining = 10  # Remaining oxygen in hours
+mass_astronaut = 70  # Mass of the astronaut in kg
 
-# Σταθερές
-speed_of_light = 3.0e8  # Ταχύτητα του φωτός σε μέτρα/δευτερόλεπτο
+# Constants
+speed_of_light = 3.0e8  # Speed of light in meters/second
 
-# Υπολογισμοί
-acceleration = (2 * power_laser) / (speed_of_light * mass_astronaut)
+# Calculations
+force = power_laser / speed_of_light
+acceleration = force / mass_astronaut
 time_to_return = math.sqrt(2 * distance / acceleration)
 
-# Έλεγχος αν ο χρόνος υπερβαίνει το υπόλοιπο οξυγόνου
-if time_to_return > oxygen_remaining:
-    print("Δεν είναι δυνατή η επιστροφή. Ο χρόνος υπερβαίνει το υπόλοιπο οξυγόνου.")
+# Check if the time exceeds the remaining oxygen
+if time_to_return > oxygen_remaining * 3600:  # convert oxygen_remaining to seconds
+    print("The return is not possible. The time exceeds the remaining oxygen.")
 else:
-    print(f"Ο αστροναύτης θα χρειαστεί περίπου {time_to_return:.2f} δευτερόλεπτα για να επιστρέψει.")
+    print(f"The astronaut will need approximately {time_to_return:.2f} seconds to return.")
