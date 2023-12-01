@@ -21,4 +21,7 @@ if time_to_return > oxygen_remaining * 3600:  # convert oxygen_remaining to seco
     seconds = int(time_to_return % 60)
     print(f"The return is not possible. The time exceeds the remaining oxygen. Estimated time: {hours}h {minutes}m {seconds}s")
 else:
-    print(f"The astronaut will need approximately {time_to_return:.2f} seconds to return.")
+    hours = int(time_to_return // 3600)
+    minutes = int((time_to_return % 3600) // 60)
+    seconds = int(time_to_return % 60)
+    print(f"The astronaut will need approximately {hours}h {minutes}m {seconds}s to return.")
