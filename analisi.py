@@ -34,7 +34,7 @@ def plot_graph(x, y, slope, ordinate, yerr):
     equation = f"y = {slope:.2f}x  {ordinate:.2f}"
     plt.text(0.89, 0.15, equation, transform=plt.gca().transAxes, fontsize=10, verticalalignment='bottom',horizontalalignment='right')
 
-    plt.xlabel(r'$\frac{1}{{m}^2}$', fontsize=8)
+    plt.xlabel(r'$\frac{1}{{m}^2}$', fontsize=12)
     plt.ylabel(r'$\frac{1}{{y_m}^2}$')
 
     plt.savefig('analisi.png', dpi=300)
