@@ -26,11 +26,10 @@ def plot_graph(x, y, slope, ordinate,yerr):
     plt.errorbar(x, y, yerr=yerr, fmt='o',color='black')
     plt.scatter(x, y)
     plt.plot(x, [slope*x_i + ordinate for x_i in x])
-    plt.xlim(left=0) # x axis starts from 0
+    plt.xlim(left=0) 
     plt.savefig('analisi.png')
 
-#xvals = [1,2,3,4]
-#yvals = [(0.01181/2),(0.02433/2),(0.03553/2),(0.04683/2)]
+
 xvals = [1,1/4,1/9,1/16]
 yvals = [1/(0.01181/2)**2,1/(0.02433/2)**2,1/(0.03553/2)**2,1/(0.04683/2)**2]
 n = len(xvals)
