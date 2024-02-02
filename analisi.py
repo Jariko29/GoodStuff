@@ -23,7 +23,7 @@ def calculate_errors(x, y, slope, ordinate, delta, n):
 
 def plot_graph(x, y, slope, ordinate, yerr):
     plt.figure(figsize=(10,8))
-    plt.gca().set_facecolor('whitesmoke')
+    plt.gca().set_facecolor('0.88')
     plt.grid(True)
     plt.errorbar(x, y, yerr=yerr, fmt='o', color='black',elinewidth=0.7)
     plt.scatter(x, y)
