@@ -22,6 +22,7 @@ def calculate_errors(x, y, slope, ordinate, delta, n):
     return uncertainty, slopeerr, ordinateerr
 
 def plot_graph(x, y, slope, ordinate, yerr):
+    plt.figure(figsize=(10,8))
     plt.grid(True)
     plt.errorbar(x, y, yerr=yerr, fmt='o', color='black',elinewidth=0.7)
     plt.scatter(x, y)
@@ -30,12 +31,12 @@ def plot_graph(x, y, slope, ordinate, yerr):
 
     ymin, ymax = plt.ylim()
     plt.ylim(ymin,ymax*1.2)
-    plt.text(0.4, 1.05, r'$\frac{1}{{y_m}^2} = f(\frac{1}{{m}^2})$', fontsize=14, transform=plt.gca().transAxes)
+    plt.text(0.4, 1.05, r'$\frac{1}{{y_m}^2} = f(\frac{1}{{m}^2})$', fontsize=20, transform=plt.gca().transAxes)
     equation = f"y = {slope:.2f}x  {ordinate:.2f}"
-    plt.text(0.89, 0.15, equation, transform=plt.gca().transAxes, fontsize=10, verticalalignment='bottom',horizontalalignment='right')
+    plt.text(0.89, 0.15, equation, transform=plt.gca().transAxes, fontsize=13, verticalalignment='bottom',horizontalalignment='right')
 
-    plt.xlabel(r'$\frac{1}{{m}^2}$', fontsize=12)
-    plt.ylabel(r'$\frac{1}{{y_m}^2}$')
+    plt.xlabel(r'$\frac{1}{{m}^2}$',fontsize=20)
+    plt.ylabel(r'$\frac{1}{{y_m}^2} (\frac{1}{m})$')
 
     plt.savefig('analisi.png', dpi=300)
 
