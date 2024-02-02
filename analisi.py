@@ -31,7 +31,6 @@ def plot_graph(x, y, slope, ordinate, yerr):
     # Display the equation on the plot
     equation = f"y = {slope:.2f}x + {ordinate:.2f}"
     plt.text(0.05, 0.95, equation, transform=plt.gca().transAxes, fontsize=10, verticalalignment='',horizontalalignment='left')
-    
     plt.savefig('analisi.png')
 
 
