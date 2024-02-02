@@ -27,7 +27,9 @@ def plot_graph(x, y, slope, ordinate, yerr):
     plt.scatter(x, y)
     plt.plot(x, [slope*x_i + ordinate for x_i in x])
     plt.xlim(left=0)
-    plt.text(0.4, 1, r'$\frac{1}{{y_m}^2} = f(\frac{1}{{m}^2})$', fontsize=12, transform=plt.gca().transAxes)
+    ymin, ymax = plt.ylim()
+    plt.ylim(ymin,ymax*1.2)
+    plt.text(0.4, 1.05, r'$\frac{1}{{y_m}^2} = f(\frac{1}{{m}^2})$', fontsize=14, transform=plt.gca().transAxes)
     equation = f"y = {slope:.2f}x  {ordinate:.2f}"
     plt.text(0.89, 0.15, equation, transform=plt.gca().transAxes, fontsize=10, verticalalignment='bottom',horizontalalignment='right')
     plt.savefig('analisi.png', dpi=300)
