@@ -27,11 +27,10 @@ def plot_graph(x, y, slope, ordinate, yerr):
     plt.scatter(x, y)
     plt.plot(x, [slope*x_i + ordinate for x_i in x])
     plt.xlim(left=0)
-    
-    # Display the equation on the plot
+    plt.title('1/y_m^2 = f(1/m^2)')
     equation = f"y = {slope:.2f}x  {ordinate:.2f}"
     plt.text(0.89, 0.15, equation, transform=plt.gca().transAxes, fontsize=10, verticalalignment='bottom',horizontalalignment='right')
-    plt.savefig('analisi.svg', dpi=300)
+    plt.savefig('analisi.png', dpi=300)
 
 
 xvals = [1,1/4,1/9,1/16]
