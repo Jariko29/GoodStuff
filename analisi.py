@@ -21,12 +21,17 @@ def calculate_errors(x, y, slope, ordinate, delta, n):
     ordinateerr = np.sqrt(uncertainty**2*sumx2/delta)
     return uncertainty, slopeerr, ordinateerr
 
-def plot_graph(x, y, slope, ordinate,yerr):
+def plot_graph(x, y, slope, ordinate, yerr):
     plt.grid(True)
-    plt.errorbar(x, y, yerr=yerr, fmt='o',color='black')
+    plt.errorbar(x, y, yerr=yerr, fmt='o', color='black')
     plt.scatter(x, y)
     plt.plot(x, [slope*x_i + ordinate for x_i in x])
-    plt.xlim(left=0) 
+    plt.xlim(left=0)
+    
+    # Display the equation on the plot
+    equation = f"y = {slope:.2f}x + {ordinate:.2f}"
+    plt.text(0.05, 0.95, equation, transform=plt.gca().transAxes, fontsize=10, verticalalignment='',horizontalalignment='left')
+    
     plt.savefig('analisi.png')
 
 
