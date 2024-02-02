@@ -23,7 +23,7 @@ def calculate_errors(x, y, slope, ordinate, delta, n):
 
 def plot_graph(x, y, slope, ordinate, yerr):
     plt.grid(True)
-    plt.errorbar(x, y, yerr=yerr, fmt='o', color='black')
+    plt.errorbar(x, y, yerr=yerr, fmt='o', color='black',elinewidth=0.7)
     plt.scatter(x, y)
     plt.plot(x, [slope*x_i + ordinate for x_i in x])
     plt.xlim(left=0)
@@ -46,4 +46,4 @@ print('klisi =', slope, '+-', slopeerr)
 print('tetagmeni =', ordinate, '+-', ordinateerr)
 print('sigma =', uncertainty)
 
-plot_graph(xvals, yvals, slope, ordinate,1/(0.01**2))
+plot_graph(xvals, yvals, slope, ordinate, 50)
