@@ -36,7 +36,8 @@ def plot_graph(x, y, slope, ordinate, yerr):
     plt.text(0.89, 0.15, equation, transform=plt.gca().transAxes, fontsize=13, verticalalignment='bottom',horizontalalignment='right')
 
     plt.xlabel(r'$\frac{1}{{m}^2}$',fontsize=20)
-    plt.ylabel(r'$\frac{1}{{y_m}^2} (\frac{1}{m})$')
+    plt.text(-0.13, 0.48, r'$\frac{1}{{y_m}^2}$', fontsize=20, rotation=90, va='center', transform=plt.gca().transAxes)
+    plt.text(-0.12, 0.55, r'$(\frac{1}{m})$', fontsize=12, rotation=90, va='center', transform=plt.gca().transAxes)
 
     plt.savefig('analisi.png', dpi=300)
 
