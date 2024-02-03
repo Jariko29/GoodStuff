@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 xvals = [0.79,0.765,0.74,0.715,0.718,0.665,0.64,0.615,0.59]
 yvals = [576,582,527,544,515,504,460,465,421]
 yvals = [i*10**(-3)/2 for i in yvals]
+print(yvals)
 n=len(xvals)
 #values gia askisi 2
 #kai dame ekamata me tin apostasi opos pio pano
