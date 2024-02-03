@@ -61,7 +61,7 @@ print('ekatostiaia apoklisi apostasis f = %f%%'%apoklisiapos)
 print('\n')
 
 #plotting askisi 1
-plt.figure(1)
+plt.figure(figsize=(8, 6))
 plt.grid(True)
 
 plt.scatter(yvals,xvals,label='data points')
