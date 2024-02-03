@@ -64,7 +64,7 @@ print('\n')
 plt.figure(figsize=(8, 6))
 plt.grid(True)
 
-plt.scatter(yvals,xvals,label='data')
+plt.scatter(xvals,yvals,label='data')
 plt.ylim(0.4,1.1)
 plt.plot(yvals, [klisi*x + tetagmeni for x in yvals],label='y = %f*x +%f'%(klisi,tetagmeni))  # Corrected here
 plt.errorbar(yvals, xvals, yerr=sigma, fmt='o', color='black',elinewidth=0.7,label='error=+-%f'%sigma)
