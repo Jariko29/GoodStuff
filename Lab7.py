@@ -49,6 +49,7 @@ print('ekatostiaia apoklisi mikous sxismis =%f%%'%apoklisid)
 print('\n')
 y1=[((klisi+sigmaA)*y + (tetagmeni+sigmaB)) for y in yvals]
 y2=[((klisi-sigmaA)*y + (tetagmeni-sigmaB)) for y in yvals]
+
 #solve askisi 3 kai print apotelesmata
 apostasif=wl*(2-0.5)/klisi2 # apostasi f
 apostasierr=-(wl*(2-0.5))/(klisi2**2)*sigmaA2
@@ -63,7 +64,6 @@ print('\n')
 #plotting askisi 1
 plt.figure(figsize=(8, 6))
 plt.grid(True)
-
 plt.scatter(yvals,xvals,label='data')
 plt.ylim(0.4,1.1)
 plt.plot(yvals, [klisi*x + tetagmeni for x in yvals],label='x = %f*y +%f'%(klisi,tetagmeni))  # Corrected here
@@ -75,9 +75,10 @@ plt.fill_between(yvals,y1,y2,label='slope & ordinate error')
 plt.legend(loc='best')
 plt.savefig('analisi1.png')
 #plotting askisi 2
-plt.figure(2)
+plt.figure(figsize=(8, 6))
 plt.grid(True)
 plt.scatter(xvals2,yvals2,label='data')
+plt.ylim(0.007,0.016)
 plt.plot(xvals2, [klisi2*x + tetagmeni2 for x in xvals2],label='y = %f*x + %f'%(klisi2,tetagmeni2))
 plt.errorbar(xvals2, yvals2, yerr=sigma2, fmt='o', color='black',elinewidth=0.7,label='error=+-%f'%sigma2)
 plt.title('y=f(x)')
