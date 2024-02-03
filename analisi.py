@@ -25,7 +25,7 @@ def plot_graph(x, y, slope, ordinate, yerr):
     plt.figure(figsize=(10,8))
     plt.gca().set_facecolor('0.93')
     plt.grid(True)
-    plt.errorbar(x, y, yerr=yerr, fmt='o', color='black',elinewidth=0.7)
+    plt.errorbar(x, y, yerr=yerr, fmt='o', color='black',elinewidth=0.7,label='error=+-%f'%yerr)
     plt.scatter(x, y,label='data')
     plt.plot(x, [slope*x_i + ordinate for x_i in x])
     plt.xlim(left=0)
