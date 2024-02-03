@@ -53,6 +53,7 @@ y2=[((klisi-sigmaA)*y + (tetagmeni-sigmaB)) for y in yvals]
 
 #solve askisi 3 kai print apotelesmata
 apostasif=wl*(2-0.5)/klisi2 # apostasi f
+print(apostasif)
 apostasierr=-(wl*(2-0.5))/(klisi2**2)*sigmaA2
 apoklisiapos=abs(apostasif-0.004*10**(-3))/sigma2*100 #ekatostiaia apoklisi stin apostasi f
 print('askisi 3 ')
