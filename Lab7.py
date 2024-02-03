@@ -11,7 +11,7 @@ n=len(xvals)
 #kai dame ekamata me tin apostasi opos pio pano
 xvals2 = [0.79,0.77,0.75,0.73,0.71,0.69,0.67,0.65]
 yvals2 = [0.0118,0.01136,0.01136,0.01086,0.01039,0.01058,0.00997,0.00975]
-#yvals2 = [i/2 for i in yvals2]
+yvals2 = [i/2 for i in yvals2]
 n2=len(xvals2)
 
 #elaxista tetragona
