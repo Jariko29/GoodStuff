@@ -55,7 +55,7 @@ y2=[((klisi-sigmaA)*y + (tetagmeni-sigmaB)) for y in yvals]
 apostasif=wl*(2-0.5)/klisi2 # apostasi f
 print(apostasif)
 apostasierr=-(wl*(2-0.5))/(klisi2**2)*sigmaA2
-apoklisiapos=abs(apostasif-0.125*10**(-3))/sigma2*100 #ekatostiaia apoklisi stin apostasi f
+apoklisiapos=abs(apostasif-0.04*10**(-3))/(0.04*10**(-3))*100 #ekatostiaia apoklisi stin apostasi f
 print('askisi 3 ')
 print('klisi =', klisi2, '+-', sigmaA2)
 print('tetagmeni =', tetagmeni2, '+-', sigmaB2)
