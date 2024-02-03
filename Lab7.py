@@ -6,9 +6,8 @@ import matplotlib.pyplot as plt
 xvals = [0.79,0.765,0.74,0.715,0.718,0.665,0.64,0.615,0.59]
 yvals = [576,582,527,544,515,504,460,465,421]
 yvals = [i*10**(-3)/2 for i in yvals]
-print(yvals)
 n=len(xvals)
-#values gia askisi 2
+#values gia askisi 3
 #kai dame ekamata me tin apostasi opos pio pano
 xvals2 = [0.79,0.77,0.75,0.73,0.71,0.69,0.67,0.65]
 yvals2 = [0.0118,0.01136,0.01136,0.01086,0.01039,0.01058,0.00997,0.00975]
@@ -65,25 +64,25 @@ print('\n')
 plt.figure(figsize=(8, 6))
 plt.grid(True)
 
-plt.scatter(yvals,xvals,label='data points')
+plt.scatter(yvals,xvals,label='data')
 plt.ylim(0.4,1.1)
 plt.plot(yvals, [klisi*x + tetagmeni for x in yvals],label='y = %f*x +%f'%(klisi,tetagmeni))  # Corrected here
 plt.errorbar(yvals, xvals, yerr=sigma, fmt='o', color='black',elinewidth=0.7,label='error=+-%f'%sigma)
 plt.title('x=f(y)')
 plt.ylabel('x(m)')
 plt.xlabel('y(m)')
-plt.fill_between(yvals,y1,y2,label='sfalma klisis & tetagmenis')
+plt.fill_between(yvals,y1,y2,label='slope & ordinate error')
 plt.legend(loc='best')
 plt.savefig('analisi1.png')
 #plotting askisi 2
 plt.figure(2)
 plt.grid(True)
-plt.scatter(xvals2,yvals2,label='data points')
+plt.scatter(xvals2,yvals2,label='data')
 plt.plot(xvals2, [klisi2*x + tetagmeni2 for x in xvals2],label='y = %f*x + %f'%(klisi2,tetagmeni2))
 plt.errorbar(xvals2, yvals2, yerr=sigma2, fmt='o', color='black',elinewidth=0.7,label='error=+-%f'%sigma2)
 plt.title('y=f(x)')
 plt.ylabel('y(m)')
 plt.xlabel('x(m)')
-plt.fill_between(xvals2,[(klisi2+sigmaA2)*x + (tetagmeni2+sigmaB2) for x in xvals2],[(klisi2-sigmaA2)*x + (tetagmeni2-sigmaB2) for x in xvals2],label='sfalma klisis & tetagmenis')
+plt.fill_between(xvals2,[(klisi2+sigmaA2)*x + (tetagmeni2+sigmaB2) for x in xvals2],[(klisi2-sigmaA2)*x + (tetagmeni2-sigmaB2) for x in xvals2],label='slope & ordinate error')
 plt.legend(loc='best')
 plt.savefig('analisi3.png')
