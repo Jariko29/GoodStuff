@@ -26,7 +26,7 @@ def plot_graph(x, y, slope, ordinate, yerr):
     plt.gca().set_facecolor('0.93')
     plt.grid(True)
     plt.errorbar(x, y, yerr=yerr, fmt='o', color='black',elinewidth=0.7)
-    plt.scatter(x, y)
+    plt.scatter(x, y,label='data')
     plt.plot(x, [slope*x_i + ordinate for x_i in x])
     plt.xlim(left=0)
     plt.fill_between(xvals,[(slope+slopeerr)*x + (ordinate+ordinateerr) for x in xvals],[(slope-slopeerr)*x + (ordinate-ordinateerr) for x in xvals],label='slope & ordinate error')
@@ -39,7 +39,7 @@ def plot_graph(x, y, slope, ordinate, yerr):
     plt.xlabel(r'$\frac{1}{{m}^2}$',fontsize=20)
     plt.text(-0.13, 0.48, r'$\frac{1}{{y_m}^2}$', fontsize=20, rotation=90, va='center', transform=plt.gca().transAxes)
     plt.text(-0.12, 0.55, r'$(\frac{1}{m})$', fontsize=12, rotation=90, va='center', transform=plt.gca().transAxes)
-
+    plt.legend(loc='best')
     plt.savefig('analisi.png', dpi=300)
 
 
