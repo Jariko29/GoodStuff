@@ -65,7 +65,7 @@ plt.figure(1)
 plt.grid(True)
 
 plt.scatter(yvals,xvals,label='data points')
-plt.plot(yvals, [klisi*x + tetagmeni for x in yvals],label='y = %f*x %f'%(klisi,tetagmeni))  # Corrected here
+plt.plot(yvals, [klisi*x + tetagmeni for x in yvals],label='y = %f*x +-%f'%(klisi,tetagmeni))  # Corrected here
 plt.errorbar(yvals, xvals, yerr=sigma, fmt='o', color='black',elinewidth=0.7,label='error=+-%f'%sigma)
 plt.title('x=f(y)')
 plt.ylabel('x(m)')
