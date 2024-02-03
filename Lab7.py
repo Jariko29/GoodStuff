@@ -3,14 +3,15 @@ import numpy as np
 import matplotlib.pyplot as plt 
 # values gia askisi 1
 #ekamamata sosta me tin apostasi pou elalousame (apostasi anixneuti-apostasi sxismis)
-xvals = [1,1/4,1/9,1/16]
-yvals = [1/(0.01181/2)**2,1/(0.02433/2)**2,1/(0.03553/2)**2,1/(0.04683/2)**2]
+xvals = [0.79,0.765,0.74,0.715,0.718,0.665,0.64,0.615,0.59]
+yvals = [576,582,527,544,515,504,460,465,421]
 yvals = [i*10**(-3)/2 for i in yvals]
 n=len(xvals)
 #values gia askisi 3
 #kai dame ekamata me tin apostasi opos pio pano
 xvals2 = [0.79,0.77,0.75,0.73,0.71,0.69,0.67,0.65]
 yvals2 = [0.0118,0.01136,0.01136,0.01086,0.01039,0.01058,0.00997,0.00975]
+yvals2 = [i/2 for i in yvals2]
 n2=len(xvals2)
 
 #elaxista tetragona
