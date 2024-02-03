@@ -3,8 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt 
 # values gia askisi 1
 #ekamamata sosta me tin apostasi pou elalousame (apostasi anixneuti-apostasi sxismis)
-xvals = [0.79,0.765,0.74,0.715,0.718,0.665,0.64,0.615,0.59]
-yvals = [576,582,527,544,515,504,460,465,421]
+xvals = [1,1/4,1/9,1/16]
+yvals = [1/(0.01181/2)**2,1/(0.02433/2)**2,1/(0.03553/2)**2,1/(0.04683/2)**2]
 yvals = [i*10**(-3)/2 for i in yvals]
 n=len(xvals)
 #values gia askisi 3
