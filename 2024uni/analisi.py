@@ -48,4 +48,4 @@ print('klisi =', slope, '+-', slopeerr)
 print('tetagmeni =', ordinate, '+-', ordinateerr)
 print('sigma =', uncertainty)
 
-plot_graph(xvals, yvals, slope, ordinate, uncertainty,'/2024uni/Lab02/grafiki1.png')
+plot_graph(xvals, yvals, slope, ordinate, uncertainty,'workspaces/GoodStuff/2024uni/Lab02/grafiki1.png')
