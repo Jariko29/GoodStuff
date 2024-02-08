@@ -21,7 +21,7 @@ def calculate_errors(x, y, slope, ordinate, delta, n):
     ordinateerr = np.sqrt(uncertainty**2*sumx2/delta)
     return uncertainty, slopeerr, ordinateerr
 
-def plot_graph(x, y, slope, ordinate, yerr):
+def plot_graph(x, y, slope, ordinate, yerr,save_path):
     plt.figure(figsize=(10,8))
     plt.gca().set_facecolor('0.93')
     plt.grid(True)
@@ -30,29 +30,22 @@ def plot_graph(x, y, slope, ordinate, yerr):
     plt.plot(x, [slope*x_i + ordinate for x_i in x])
     plt.xlim(left=0)
     plt.fill_between(xvals,[(slope+slopeerr)*x + (ordinate+ordinateerr) for x in xvals],[(slope-slopeerr)*x + (ordinate-ordinateerr) for x in xvals],label='slope & ordinate error')
-    ymin, ymax = plt.ylim()
-    plt.ylim(ymin,ymax*1.2)
-    plt.text(0.4, 1.05, r'$\frac{1}{{y_m}^2} = f(\frac{1}{{m}^2})$', fontsize=20, transform=plt.gca().transAxes)
     equation = f"y = {slope:.2f}x  {ordinate:.2f}"
     plt.text(0.89, 0.15, equation, transform=plt.gca().transAxes, fontsize=13, verticalalignment='bottom',horizontalalignment='right')
 
-    plt.xlabel(r'$\frac{1}{{m}^2}$',fontsize=20)
-    plt.text(-0.13, 0.48, r'$\frac{1}{{y_m}^2}$', fontsize=20, rotation=90, va='center', transform=plt.gca().transAxes)
-    plt.text(-0.12, 0.55, r'$(\frac{1}{m})$', fontsize=12, rotation=90, va='center', transform=plt.gca().transAxes)
-    plt.legend(loc='best')
-    plt.savefig('analisi.png', dpi=300)
+    plt.savefig(f'{save_path}',dpi=300)
 
-
-xvals = [1,1/4,1/9,1/16]
-yvals = [1/(0.01181/2)**2,1/(0.02433/2)**2,1/(0.03553/2)**2,1/(0.04683/2)**2]
+xvals = [1,2,3]
+yvals = [1,2,3]
 n = len(xvals)
 
 sumx, sumy, sumx2, sumxy = calculate_sums(xvals, yvals)
 slope, ordinate, delta = calculate_parameters(sumx, sumy, sumx2, sumxy, n)
 uncertainty, slopeerr, ordinateerr = calculate_errors(xvals, yvals, slope, ordinate, delta, n)
 
+
 print('klisi =', slope, '+-', slopeerr)
 print('tetagmeni =', ordinate, '+-', ordinateerr)
 print('sigma =', uncertainty)
 
-plot_graph(xvals, yvals, slope, ordinate, uncertainty)
+plot_graph(xvals, yvals, slope, ordinate, uncertainty,'/2024uni/Lab02/grafiki1.png')
