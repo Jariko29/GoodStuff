@@ -21,7 +21,7 @@ def calculate_errors(x, y, slope, ordinate, delta, n):
     ordinateerr = np.sqrt(uncertainty**2*sumx2/delta)
     return uncertainty, slopeerr, ordinateerr
 
-def plot_graph(x, y, slope, ordinate, yerr,save_path):
+def plot_graph(x, y, slope, ordinate, yerr):
     plt.figure(figsize=(10,8))
     plt.gca().set_facecolor('0.93')
     plt.grid(True)
@@ -33,10 +33,10 @@ def plot_graph(x, y, slope, ordinate, yerr,save_path):
     equation = f"y = {slope:.2f}x  {ordinate:.2f}"
     plt.text(0.89, 0.15, equation, transform=plt.gca().transAxes, fontsize=13, verticalalignment='bottom',horizontalalignment='right')
 
-    plt.savefig(f'{save_path}',dpi=300)
+    plt.savefig('plot1.png',dpi=300)
 
-xvals = [1,2,3]
-yvals = [1,2,3]
+xvals = [1,2,3,4]
+yvals = [1,2,3,4]
 n = len(xvals)
 
 sumx, sumy, sumx2, sumxy = calculate_sums(xvals, yvals)
@@ -48,4 +48,4 @@ print('klisi =', slope, '+-', slopeerr)
 print('tetagmeni =', ordinate, '+-', ordinateerr)
 print('sigma =', uncertainty)
 
-plot_graph(xvals, yvals, slope, ordinate, uncertainty,'workspaces/GoodStuff/2024uni/Lab02/grafiki1.png')
+plot_graph(xvals, yvals, slope, ordinate, uncertainty)
