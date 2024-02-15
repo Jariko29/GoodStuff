@@ -1,5 +1,8 @@
 import tkinter as tk
 import random
+Xvfb :1 -screen 0 800x600x16 &> xvfb.log  &
+export DISPLAY=:1.0
+python jj.py
 
 def create_minesweeper_grid(rows, cols, mines):
     grid = [[0 for _ in range(cols)] for _ in range(rows)]
