@@ -85,27 +85,23 @@ def mean_and_std(x1,x2):
 #------------------------------------------------
 def plot_graph(x, y, slope, ordinate, yerr,plotname,fig):
     def func (x,a,b,c):
-       return  a*np.cos(b*x+c) # linear fit , change if something else
+       return a*np.cos(np.radians(x)+b)**2 +c # fit , change if something else
     n=len(x)
-    #fitx=np.linspace(0,n,500);fity=func(fitx,0,0,0)+0.2*np.random.normal(size=len(fitx))
-    #params,params_covariance=curve_fit(func,fitx,fity)
-    #print("parametri:",params) 
-    coeffs = np.polyfit(x, y, 3)
-    print('parameters:',coeffs)
-    fitted_poly=np.poly1d(coeffs)
-    yfit=fitted_poly(x)
-
-
-
+    params,params_covariance=curve_fit(func,x,y,p0=[0,0,0])
+    print("parametri:",params) 
+    #coeffs = np.polyfit(x, y, 3)
+    #print('parameters:',coeffs)
+    #fitted_poly=np.poly1d(coeffs)
+    #yfit=fitted_poly(x)
     plt.figure(fig)
-    plt.figure(figsize=(10,8))  
-    #plt.plot(fitx,func(fitx,params[0],params[1],params[2]),label='curve fit')
+    #plt.figure(figsize=(10,8))  
+    plt.plot(x,func(x,*params),label='curve fit')
     plt.gca().set_facecolor('0.88')
     plt.grid(True)
     plt.errorbar(x, y, yerr=yerr, label='σφάλμα',fmt='o', color='black',elinewidth=0.7)
     colors = np.random.rand(n)
     plt.scatter(x, y,label='data')
-    plt.plot(x, yfit, label='fit',color='red')
+    #plt.plot(x, yfit, label='fit',color='red')
     #plt.plot(x, [slope*x_i + ordinate for x_i in x])
     #plt.xlim(x[0],x[n-1])
     #plt.ylim([0],y[-1])
