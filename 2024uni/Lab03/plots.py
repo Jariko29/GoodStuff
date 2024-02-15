@@ -94,7 +94,7 @@ def plot_graph(x, y, slope, ordinate, yerr,plotname,fig):
     #fitted_poly=np.poly1d(coeffs)
     #yfit=fitted_poly(x)
     plt.figure(fig)
-    #plt.figure(figsize=(10,8))  
+    plt.figure(figsize=(9,7))  
     plt.plot(x,func(x,*params),label='curve fit')
     plt.gca().set_facecolor('0.88')
     plt.grid(True)
@@ -109,7 +109,7 @@ def plot_graph(x, y, slope, ordinate, yerr,plotname,fig):
     #change for each plot
     plt.title('Διάγραμμα έντασης-γωνίας')
     plt.xlabel('Γωνία (μοίρες)')
-    plt.ylabel('ένταση (Ι)')
+    plt.ylabel('Ἐνταση (Ι)')
     equation = f"y = {slope:.2f}x  {ordinate:.2f}"  #Legend equation
 
     plt.legend(loc='best')
