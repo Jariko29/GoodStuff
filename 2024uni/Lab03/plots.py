@@ -129,7 +129,7 @@ klisi4a, tetagmeni4a, sigmaya,klisierr4a,teterr4a = lsq(gonies4,entasi045, len(g
 #------------------------------------------------
 #------------plot graph--------------------------
 #------------------------------------------------
-askisi1=plot_graph(gonies,entasi,klisi1,tetagmeni1,entasierr,name[0],1,)
+askisi1=plot_graph(gonies,entasi,klisi1,tetagmeni1,entasierr,name[0],1)
 askisi2=plot_graph(gonies2,entasi2,klisi2,tetagmeni2,entasierr2,name[1],2)
 askisi3a=plot_graph(gonies3,entasi30,klisi3a,tetagmeni3a,entasierr3,name[2],3)
 askisi3b=plot_graph(gonies3,entasi45,klisi3b,tetagmeni3b,entasierr3,name[3],4)  
