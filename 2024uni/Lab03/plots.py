@@ -98,7 +98,7 @@ def plot_graph(x, y, slope, ordinate, yerr,plotname,fig):
 
 
     plt.figure(fig)
-    #plt.figure(figsize=(10,8))  
+    plt.figure(figsize=(10,8))  
     #plt.plot(fitx,func(fitx,params[0],params[1],params[2]),label='curve fit')
     plt.gca().set_facecolor('0.88')
     plt.grid(True)
