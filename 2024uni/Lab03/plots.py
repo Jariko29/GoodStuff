@@ -84,22 +84,22 @@ def mean_and_std(x1,x2):
 #------------plot graph--------------------------
 #------------------------------------------------
 def plot_graph(x, y, slope, ordinate, yerr,plotname,fig):
-    def func (x,a,b,c):
+    '''def func (x,a,b,c):
        return a*np.cos(np.radians(x)+b)**2 +c # fit , change if something else
     n=len(x)
     params,params_covariance=curve_fit(func,x,y,p0=[0,0,0])
-    print("parametri:",params) 
+    print("parametri:",params) '''
     #coeffs = np.polyfit(x, y, 3)
     #print('parameters:',coeffs)
     #fitted_poly=np.poly1d(coeffs)
     #yfit=fitted_poly(x)
     plt.figure(fig)
     plt.figure(figsize=(9,7))  
-    plt.plot(x,func(x,*params),label='curve fit')
+    plt.axhline(y=0.00011,color='red',label='curve fit')
     plt.gca().set_facecolor('0.88')
     plt.grid(True)
     plt.errorbar(x, y, yerr=yerr, label='σφάλμα',fmt='o', color='black',elinewidth=0.7)
-    colors = np.random.rand(n)
+    
     plt.scatter(x, y,label='data')
     #plt.plot(x, yfit, label='fit',color='red')
     #plt.plot(x, [slope*x_i + ordinate for x_i in x])
@@ -129,11 +129,12 @@ klisi4a, tetagmeni4a, sigmaya,klisierr4a,teterr4a = lsq(gonies4,entasi045, len(g
 #------------------------------------------------
 #------------plot graph--------------------------
 #------------------------------------------------
-askisi1=plot_graph(gonies,entasi,klisi1,tetagmeni1,entasierr,name[0],1)
+'''askisi1=plot_graph(gonies,entasi,klisi1,tetagmeni1,entasierr,name[0],1)
 askisi2=plot_graph(gonies2,entasi2,klisi2,tetagmeni2,entasierr2,name[1],2)
 askisi3a=plot_graph(gonies3,entasi30,klisi3a,tetagmeni3a,entasierr3,name[2],3)
-askisi3b=plot_graph(gonies3,entasi45,klisi3b,tetagmeni3b,entasierr3,name[3],4)  
+  
 askisi3c=plot_graph(gonies3,entasi60,klisi3c,tetagmeni3c,entasierr3,name[4],5) 
 askisi3d=plot_graph(gonies3,entasi90,klisi3d,tetagmeni3d,entasierr3,name[5],6)
 askisi4=plot_graph(gonies4,entasi00,klisi4,tetagmeni4,entasierr4,name[6],7)
-askisi4a=plot_graph(gonies4,entasi045,klisi4a,tetagmeni4a,entasierr4,name[7],8)
+askisi4a=plot_graph(gonies4,entasi045,klisi4a,tetagmeni4a,entasierr4,name[7],8)'''
+askisi3b=plot_graph(gonies3,entasi45,klisi3b,tetagmeni3b,entasierr3,name[3],4)
