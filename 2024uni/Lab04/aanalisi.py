@@ -65,7 +65,7 @@ def plot_graph(x, y,plotname,fig):# slope, ordinate, yerr,
     n=len(x)
     lower_bound=[0,0,0]
     upper_bound=[90,2*np.pi,100]
-    params,params_covariance=curve_fit(func,x,y,bounds=(lower_bound,upper_bound),method='trf')
+    params,params_covariance=curve_fit(func,x,y,p0=[1,np.pi/6,np.pi/4],bounds=(lower_bound,upper_bound),method='trf')
     print("parametri:",params) 
     #coeffs = np.polyfit(x, y, 3)
     #print('parameters:',coeffs)
