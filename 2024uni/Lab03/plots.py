@@ -99,7 +99,6 @@ def plot_graph(x, y, slope, ordinate, yerr,plotname,fig):
     plt.gca().set_facecolor('0.88')
     plt.grid(True)
     plt.errorbar(x, y, yerr=yerr, label='σφάλμα',fmt='o', color='black',elinewidth=0.7)
-    colors = np.random.rand(n)
     plt.scatter(x, y,label='data')
     #plt.plot(x, yfit, label='fit',color='red')
     #plt.plot(x, [slope*x_i + ordinate for x_i in x])
