@@ -60,11 +60,10 @@ def plot_graph(x, y,plotname,fig):# slope, ordinate, yerr,
     #----------------------------
     #---creating fit functions---
     #----------------------------
-    print('x:',x)
     def func (x,a,b):
-       return a*(np.tan(x-b))**2/(np.tan(x+b))**2 # fit , change if something else
+       return a*(np.tan(np.radians(x-b)))**2/(np.tan(np.radians(x+b)))**2 # fit , change if something else
     n=len(x)
-    params,params_covariance=curve_fit(func,x,y,p0=[6,np.pi/8])
+    params,params_covariance=curve_fit(func,x,y,p0=[8,np.pi/4])
     print("parametri:",params) 
     #coeffs = np.polyfit(x, y, 3)
     #print('parameters:',coeffs)
