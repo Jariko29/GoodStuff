@@ -63,7 +63,7 @@ def plot_graph(x, y,plotname,fig):# slope, ordinate, yerr,
     def func (x,a,b):
        return a*np.tan(np.radians(x-b))/np.tan(np.radians(x)+b) # fit , change if something else
     n=len(x)
-    params,params_covariance=curve_fit(func,x,y,p0=[1,np.pi/6])
+    params,params_covariance=curve_fit(func,x,y,p0=[1,np.pi/6],method='trf')
     print("parametri:",params) 
     #coeffs = np.polyfit(x, y, 3)
     #print('parameters:',coeffs)
