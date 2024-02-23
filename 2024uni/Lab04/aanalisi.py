@@ -63,11 +63,12 @@ def func2 (x,a,b):
 #------------------------------------------------
 #------------plot graph--------------------------
 #------------------------------------------------
-def plot_graph(x, y,plotname,fig,fit,start=[1,1]):# slope, ordinate, yerr,
-   
+def plot_graph(x, y,plotname,fig,fit,p0=None):# slope, ordinate, yerr,
+    if p0 is None:
+        p0=[1,1]
    
     n=len(x)
-    params,params_covariance=curve_fit(fit,x,y,p0=[start[0],start[1]])
+    params,params_covariance=curve_fit(fit,x,y,p0=p0)
     print("parametri:",params) 
     
 
