@@ -97,5 +97,5 @@ print(n2a,'\t',n2b  )
 #------------plot graph--------------------------
 #------------------------------------------------
 plot_graph(thetar1,ratio1,'graph1',1,func1,[0,np.pi/6])
-plot_graph(thetar2,ratio2,'graph2',2,func2,[1,0.5])
+plot_graph(thetar2,ratio2,'graph2',2,func2,[0,0.5])
 plot_graph(thetar3,ratio3,'graph3',3,func1)
