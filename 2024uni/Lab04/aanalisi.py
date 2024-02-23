@@ -59,7 +59,7 @@ def mean_and_std(x1,x2):
 def func1 (x,a,b):
     return a*np.tan(np.radians(x)-(np.arcsin(b*np.sin(np.radians(x)))))**2/np.tan(np.radians(x)+(np.arcsin(b*np.sin(np.radians(x)))))**2 # fit , change if something else
 def func2 (x,a,b):
-    return a*np.sin(np.radians(x)-(np.arcsin(b*np.sin(np.radians(x)))))**2/np.sin(np.radians(x)+(np.arcsin(b*np.sin(np.radians(x)))))**2 # fit , change if something else
+    return a*np.sin((x)-(np.arcsin(b*np.sin((x)))))**2/np.sin((x)+(np.arcsin(b*np.sin((x)))))**2 # fit , change if something else
 #------------------------------------------------
 #------------plot graph--------------------------
 #------------------------------------------------
