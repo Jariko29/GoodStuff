@@ -53,25 +53,27 @@ def mean_and_std(x1,x2):
     meansqrt=[((i+j)/2)**2 for i,j in (zip(x1,x2))]
     std=[np.sqrt(i-j**2) for i,j in (zip(meansqrt,mean))]
     return mean,std
+ #-----------------------------------------------
+#---creating fit functions-----------------------
+#------------------------------------------------
+def func1 (x,a,b):
+    return a*np.tan(np.radians(x)-(np.arcsin(b*np.sin(np.radians(x)))))**2/np.tan(np.radians(x)+(np.arcsin(b*np.sin(np.radians(x)))))**2 # fit , change if something else
+def func2 (x,a,b):
+    return a*np.sin(np.radians(x)-(np.arcsin(b*np.sin(np.radians(x)))))**2/np.sin(np.radians(x)+(np.arcsin(b*np.sin(np.radians(x)))))**2 # fit , change if something else
 #------------------------------------------------
 #------------plot graph--------------------------
 #------------------------------------------------
-def plot_graph(x, y,plotname,fig):# slope, ordinate, yerr,
-    #----------------------------
-    #---creating fit functions---
-    #----------------------------
-    def func (x,a,b):
-       return a*(np.sin(x-b))**2/(np.sin(x+b))**2 # fit , change if something else
+def plot_graph(x, y,plotname,fig,fit):# slope, ordinate, yerr,
+   
+   
     n=len(x)
-    params,params_covariance=curve_fit(func,x,y)
+    params,params_covariance=curve_fit(func1,x,y,p0=[0,np.pi/6])
     print("parametri:",params) 
-    #coeffs = np.polyfit(x, y, 3)
-    #print('parameters:',coeffs)
-    #fitted_poly=np.poly1d(coeffs)
-    #yfit=fitted_poly(x)
-    plt.figure(fig)
-    #plt.figure(figsize=(10,8))  
-    plt.plot(x,func(x,*params),label='curve fit')
+  
+
+
+    plt.figure(fig) 
+    plt.plot(x,fit(x,*params),label='curve fit')
     plt.gca().set_facecolor('0.88')
     plt.grid(True)
     #plt.errorbar(x, y, yerr=yerr, label='σφάλμα',fmt='o', color='black',elinewidth=0.7)
@@ -83,17 +85,17 @@ def plot_graph(x, y,plotname,fig):# slope, ordinate, yerr,
     plt.title('Διάγραμμα ποσοστιαίας έντασης-γωνίας')
     plt.xlabel('Γωνία (μοίρες)')
     plt.ylabel('Ενταση (Ι-%)')
-   
-
     plt.legend(loc='best')
     plt.savefig(plotname, dpi=300)
 
 #------------------------------------------------
 #------------function call-----------------------
-
+n2a=1/0.65490557
+n2b=1/0.63893538
+print(n2a,'\t',n2b  )
 #------------------------------------------------
 #------------plot graph--------------------------
 #------------------------------------------------
-plot_graph(thetar1,ratio1,'graph1',1)
-plot_graph(thetar2,ratio2,'graph2',2)
-plot_graph(thetar3,ratio3,'graph3',3)
+plot_graph(thetar1,ratio1,'graph1',1,func1)
+plot_graph(thetar2,ratio2,'graph2',2,func2)
+plot_graph(thetar3,ratio3,'graph3',3,func1)
