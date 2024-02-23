@@ -63,13 +63,13 @@ def func2 (x,a,b):
 #------------------------------------------------
 #------------plot graph--------------------------
 #------------------------------------------------
-def plot_graph(x, y,plotname,fig,fit):# slope, ordinate, yerr,
+def plot_graph(x, y,plotname,fig,fit,start=[1,1]):# slope, ordinate, yerr,
    
    
     n=len(x)
-    params,params_covariance=curve_fit(func1,x,y,p0=[0,np.pi/6])
+    params,params_covariance=curve_fit(fit,x,y,p0=[start[0],start[1]])
     print("parametri:",params) 
-  
+    
 
 
     plt.figure(fig) 
@@ -96,6 +96,6 @@ print(n2a,'\t',n2b  )
 #------------------------------------------------
 #------------plot graph--------------------------
 #------------------------------------------------
-plot_graph(thetar1,ratio1,'graph1',1,func1)
-plot_graph(thetar2,ratio2,'graph2',2,func2)
+plot_graph(thetar1,ratio1,'graph1',1,func1,[0,np.pi/6])
+plot_graph(thetar2,ratio2,'graph2',2,func2,[1,0.5])
 plot_graph(thetar3,ratio3,'graph3',3,func1)
