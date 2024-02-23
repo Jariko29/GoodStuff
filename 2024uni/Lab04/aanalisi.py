@@ -103,3 +103,4 @@ plot_graph(thetar3,ratio3,'graph3',3,func1)
 
 
 print('slope,ordinate,uncertainty,slopeerr,ordinateerr',lsq(thetar1,ratio1,len(thetar1)))
+print(mean_and_std(lsq(thetar1,ratio1)))
