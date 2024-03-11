@@ -57,10 +57,9 @@ expression1 = r'$f = \frac{u}{2L}$'
 def func2 (x,a):
     return a*np.sqrt(x) # fit , change if something else
 expression2 = r'$f = \frac{1}{2L}\sqrt{\frac{T}{S \rho}}$'
-def func3 (x,a):
-    equat = 2*L_/(2*x+a)
-    return  equat# fit , change if something else
-expression3 = r'$λ = \frac{2L}{n+a}$'
+def func3 (x,a,b): 
+    return 2*L_/(b*x+a)# fit , change if something else
+expression3 = r'$λ = \frac{2L}{2n+a}$'
 #------------------------------------------------
 #------------plot graph--------------------------
 #------------------------------------------------
@@ -68,7 +67,7 @@ def plot_graph(x, y,plotname,fig,fit,fitname,graphtitle,xlab,ylab):# slope, ordi
    
    
     n=len(x)
-    params,params_covariance=curve_fit(fit,x,y,p0=[1])
+    params,params_covariance=curve_fit(fit,x,y,p0=[1,2])
     print("parametri:",params) 
     
     plt.figure(fig) 
