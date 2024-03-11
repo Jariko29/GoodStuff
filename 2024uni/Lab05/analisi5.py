@@ -59,8 +59,8 @@ def func2 (x,a):
 expression2 = r'$f = \frac{1}{2L}\sqrt{\frac{T}{S \rho}}$'
 def func3 (x,a):
     b = 2
-    return 2*L_/(b*x+a) # fit , change if something else
-expression3 = r'$f = \frac{2L}{n+a}$'
+    return 2*L_/(x+x+a) # fit , change if something else
+expression3 = r'$l = \frac{2L}{n+a}$'
 #------------------------------------------------
 #------------plot graph--------------------------
 #------------------------------------------------
