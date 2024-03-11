@@ -58,7 +58,7 @@ def func2 (x,a):
     return a*np.sqrt(x) # fit , change if something else
 expression2 = r'$f = \frac{1}{2L}\sqrt{\frac{T}{S \rho}}$'
 def func3 (x,a):
-    equat = 2*L_/(x+a)
+    equat = 2*L_/(2*x+a)
     return  equat# fit , change if something else
 expression3 = r'$λ = \frac{2L}{n+a}$'
 #------------------------------------------------
@@ -133,7 +133,7 @@ favg = [avg_and_std(f)[0] for f in ask2]
 fstd = [avg_and_std(f)[1] for f in ask2]
 plot_graph(T,favg, name[1], 2, func2, expression2, 'f=F(T)','Τάση (N)','Συχνότητα (Hz)'	)'''
 #ask3
-plot_graph(n,l, name[2], 3, func3, expression3, 'l_n=F(n)','Αριθμός συναντήσεων','1/2 μήκος κύματος (cm)')
+plot_graph(n,l, name[2], 3, func3, expression3, 'λ_n=F(n)','Αριθμός συναντήσεων','1/2 μήκος κύματος (cm)')
 
 
 #------------------------------------------------
