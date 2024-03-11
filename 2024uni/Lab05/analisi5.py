@@ -59,7 +59,7 @@ def func2 (x,a):
 expression2 = r'$f = \frac{1}{2L}\sqrt{\frac{T}{S \rho}}$'
 def func3 (x,a,b): 
     return 2*L_/(b*x+a)# fit , change if something else
-expression3 = r'$λ = \frac{2L}{2n+a}$'
+expression3 = r'$λ = \frac{2L}{bn+a}$'
 #------------------------------------------------
 #------------plot graph--------------------------
 #------------------------------------------------
@@ -74,7 +74,7 @@ def plot_graph(x, y,plotname,fig,fit,fitname,graphtitle,xlab,ylab):# slope, ordi
     fitx=np.linspace(min(x)-10,max(x)+10,1000)
     fitxask3=np.linspace(min(x),max(x)+5,12)
     print(fitxask3)
-    plt.plot(fitxask3,fit(fitxask3,*params),label='curve fit:%s,\n parameters: a=%.2f +-%.2f '%(fitname,params[0],params_covariance[0,0]))
+    plt.plot(fitxask3,fit(fitxask3,*params),label='curve fit:%s,\n parameter: a=%.2f +-%.2f \n parameter: b=%.2f +- %.2f'%(fitname,params[0],params_covariance[0,0],params[1],params_covariance[1,1]))
     plt.gca().set_facecolor('0.88')
     plt.grid(True)
     plt.xlim(0)
