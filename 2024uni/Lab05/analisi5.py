@@ -57,8 +57,8 @@ expression1 = r'$f = \frac{u}{2L}$'
 def func2 (x,a):
     return a*np.sqrt(x) # fit , change if something else
 expression2 = r'$f = \frac{1}{2L}\sqrt{\frac{T}{S \rho}}$'
-def func3 (x,a,b): 
-    return L_/(b*x+a)# fit , change if something else
+def func3 (x,a): 
+    return 2*L_/(2*x+a)# fit , change if something else
 expression3 = r'$λ = \frac{2L}{bn+a}$'
 #------------------------------------------------
 #------------plot graph--------------------------
@@ -67,14 +67,14 @@ def plot_graph(x, y,plotname,fig,fit,fitname,graphtitle,xlab,ylab):# slope, ordi
    
    
     n=len(x)
-    params,params_covariance=curve_fit(fit,x,y,p0=[1,2])
+    params,params_covariance=curve_fit(fit,x,y,p0=[1])
     print("parametri:",params) 
     
     plt.figure(fig) 
     fitx=np.linspace(min(x)-10,max(x)+10,1000)
     fitxask3=np.linspace(min(x),max(x)+5,12)
     print(fitxask3)
-    plt.plot(fitxask3,fit(fitxask3,*params),label='curve fit:%s,\n parameter: a=%.2f +-%.2f \n parameter: b=%.2f +- %.2f'%(fitname,params[0],params_covariance[0,0],params[1],params_covariance[1,1]))
+    plt.plot(fitxask3,fit(fitxask3,*params),label='curve fit:%s,\n parameter: a=%.2f +-%.2f'%(fitname,params[0],params_covariance[0,0]))
     plt.gca().set_facecolor('0.88')
     plt.grid(True)
     plt.xlim(0)
@@ -116,7 +116,8 @@ f230=[150.9,150.7,150.5,150.4,150.4]
 #------------------------------------------------
 f = [18.47,26.38,34.13,42.88,54.04,63.26,66.96]
 n = [1,2,3,4,5,6,7]
-l = [30,21,16,13,9.5,8,7.5] #wave/2 in cm
+l_ = [30,21,16,13,9.5,8,7.5] #wave/2 in cm
+l = [i*2 for i in l_]   #wave in cm
 L_ = 60.5 #length of string in cm
 
 #------------------------------------------------
