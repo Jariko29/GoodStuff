@@ -128,7 +128,7 @@ favg = [avg_and_std(f)[0] for f in ask2]
 fstd = [avg_and_std(f)[1] for f in ask2]
 plot_graph(T,favg, name[1], 2, func2, expression2, 'f=F(T)','Τάση (N)','Συχνότητα (Hz)'	)
 #ask3
-plot_graph(n,f, name[2], 3, func3, 'f=2L/(n+a)', 'f=F(n)','Αριθμός συναντήσεων','Συχνότητα (Hz)'	)
+plot_graph(n,l, name[2], 3, func3, 'f=2L/(n+a)', 'f=F(n)','Αριθμός συναντήσεων','Συχνότητα (Hz)'	)
 
 
 #------------------------------------------------
