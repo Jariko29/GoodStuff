@@ -58,7 +58,7 @@ def func2 (x,a):
     return a*np.sqrt(x) # fit , change if something else
 expression2 = r'$f = \frac{1}{2L}\sqrt{\frac{T}{S \rho}}$'
 def func3 (x,a):
-    return 2*L_/(x+1) # fit , change if something else
+    return 2*L_/(x+a) # fit , change if something else
 expression3 = r'$f = \frac{2L}{n+a}$'
 #------------------------------------------------
 #------------plot graph--------------------------
@@ -72,7 +72,8 @@ def plot_graph(x, y,plotname,fig,fit,fitname,graphtitle,xlab,ylab):# slope, ordi
     
     plt.figure(fig) 
     fitx=np.linspace(min(x)-10,max(x)+10,1000)
-    plt.plot(fitx,fit(fitx,*params),label='curve fit:%s,\n parameters: a=%.2f +-%.2f '%(fitname,params[0],params_covariance[0,0]))
+    fitxask3=np.linspace(min(x),max(x)+1,1000)
+    plt.plot(fitxask3,fit(fitx,*params),label='curve fit:%s,\n parameters: a=%.2f +-%.2f '%(fitname,params[0],params_covariance[0,0]))
     plt.gca().set_facecolor('0.88')
     plt.grid(True)
     plt.xlim(0)
@@ -120,7 +121,7 @@ L_ = 60.5 #length of string in cm
 #------------------------------------------------
 #------------function call-----------------------
 #ask1
-ask1= [f30, f40, f50, f60, f70, f80]
+'''ask1= [f30, f40, f50, f60, f70, f80]
 favg = [avg_and_std(f)[0] for f in ask1]
 fstd = [avg_and_std(f)[1] for f in ask1]  
 plot_graph(L,favg, name[0], 1, func1, expression1, 'f=F(L)','Μήκος χορδής (cm)','Συχνότητα (Hz)'	)
@@ -128,7 +129,7 @@ plot_graph(L,favg, name[0], 1, func1, expression1, 'f=F(L)','Μήκος χορδ
 ask2= [f12, f14, f16, f18, f20, f22, f25, f28, f230]
 favg = [avg_and_std(f)[0] for f in ask2]
 fstd = [avg_and_std(f)[1] for f in ask2]
-plot_graph(T,favg, name[1], 2, func2, expression2, 'f=F(T)','Τάση (N)','Συχνότητα (Hz)'	)
+plot_graph(T,favg, name[1], 2, func2, expression2, 'f=F(T)','Τάση (N)','Συχνότητα (Hz)'	)'''
 #ask3
 plot_graph(n,l, name[2], 3, func3, expression3, 'l_n=F(n)','Αριθμός συναντήσεων','1/2 μήκος κύματος (cm)')
 
