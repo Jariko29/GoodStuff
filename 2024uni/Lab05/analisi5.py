@@ -72,7 +72,8 @@ def plot_graph(x, y,plotname,fig,fit,fitname,graphtitle,xlab,ylab):# slope, ordi
     
     plt.figure(fig) 
     fitx=np.linspace(min(x)-10,max(x)+10,1000)
-    fitxask3=np.linspace(min(x),max(x)+1)
+    fitxask3=np.linspace(min(x),max(x))
+    print(fitxask3)
     plt.plot(fitxask3,fit(fitx,*params),label='curve fit:%s,\n parameters: a=%.2f +-%.2f '%(fitname,params[0],params_covariance[0,0]))
     plt.gca().set_facecolor('0.88')
     plt.grid(True)
