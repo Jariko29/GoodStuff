@@ -75,6 +75,7 @@ def plot_graph(x, y,plotname,fig,fit,fitname,graphtitle,xlab,ylab):# slope, ordi
     plt.plot(fitx,fit(fitx,*params),label='curve fit:%s,\n parameters: a=%.2f +-%.2f '%(fitname,params[0],params_covariance[0,0]))
     plt.gca().set_facecolor('0.88')
     plt.grid(True)
+    plt.xlim(0)
     #plt.errorbar(x, y, yerr=yerr, label='σφάλμα',fmt='o', color='black',elinewidth=0.7)
     colors = np.random.rand(n)
     plt.scatter(x, y,label='data')
