@@ -126,11 +126,10 @@ plot_graph(L,favg, name[0], 1, func1, expression1, 'f=F(L)','Μήκος χορδ
 #ask2
 ask2= [f12, f14, f16, f18, f20, f22, f25, f28, f230]
 favg = [avg_and_std(f)[0] for f in ask2]
-print(favg)
 fstd = [avg_and_std(f)[1] for f in ask2]
 plot_graph(T,favg, name[1], 2, func2, expression2, 'f=F(T)','Τάση (N)','Συχνότητα (Hz)'	)
 #ask3
-plot_graph(n,l, name[2], 3, func3, expression3, 'f=F(n)','Αριθμός συναντήσεων','Συχνότητα (Hz)')
+plot_graph(n,l, name[2], 3, func3, expression3, 'l_n=F(n)','Αριθμός συναντήσεων','1/2 μήκος κύματος (cm)')
 
 
 #------------------------------------------------
