@@ -58,8 +58,7 @@ def func2 (x,a):
     return a*np.sqrt(x) # fit , change if something else
 expression2 = r'$f = \frac{1}{2L}\sqrt{\frac{T}{S \rho}}$'
 def func3 (x,a):
-    b = 2
-    return 2*L_/(x+x+a) # fit , change if something else
+    return 2*L_/(2*x+a) # fit , change if something else
 expression3 = r'$l = \frac{2L}{n+a}$'
 #------------------------------------------------
 #------------plot graph--------------------------
