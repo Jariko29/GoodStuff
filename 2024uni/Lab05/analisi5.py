@@ -57,8 +57,8 @@ expression1 = r'$f = \frac{u}{2L}$'
 def func2 (x,a):
     return a*np.sqrt(x) # fit , change if something else
 expression2 = r'$f = \frac{1}{2L}\sqrt{\frac{T}{S \rho}}$'
-def func3 (x,a):
-    return 2*L_/(x+a) # fit , change if something else
+def func3 (x,a,b):
+    return 2*L_/(b*x+a) # fit , change if something else
 expression3 = r'$f = \frac{2L}{n+a}$'
 #------------------------------------------------
 #------------plot graph--------------------------
@@ -72,7 +72,7 @@ def plot_graph(x, y,plotname,fig,fit,fitname,graphtitle,xlab,ylab):# slope, ordi
     
     plt.figure(fig) 
     fitx=np.linspace(min(x)-10,max(x)+10,1000)
-    fitxask3=[1,2,3,4,5,6,7,8,9]*2
+    fitxask3=[1,2,3,4,5,6,7,8,9]
     print(fitxask3)
     plt.plot(fitxask3,fit(fitxask3,*params),label='curve fit:%s,\n parameters: a=%.2f +-%.2f '%(fitname,params[0],params_covariance[0,0]))
     plt.gca().set_facecolor('0.88')
