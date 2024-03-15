@@ -57,9 +57,12 @@ expression1 = r'$f = \frac{u}{2L}$'
 def func2 (x,a):
     return a*np.sqrt(x) # fit , change if something else
 expression2 = r'$f = \frac{1}{2L}\sqrt{\frac{T}{S \rho}}$'
-def func3 (x,a,b): 
-    return 2*L_/(b*x+a)# fit , change if something else
-expression3 = r'$λ = \frac{2L}{bn+a}$'
+def func3 (x,a): 
+    return 2*L_/(2*x+a)# fit , change if something else
+expression3 = r'$λ = \frac{2L}{2n+a}$'
+def func4 (x,a):
+    return x/(2*L_)*np.sqrt(a) # fit , change if something else
+expression4 = r'$f = \frac{n}{2L}\sqrt{a}$'
 #------------------------------------------------
 #------------plot graph--------------------------
 #------------------------------------------------
@@ -67,18 +70,19 @@ def plot_graph(x, y,plotname,fig,fit,fitname,graphtitle,xlab,ylab):# slope, ordi
    
    
     n=len(x)
-    params,params_covariance=curve_fit(fit,x,y,p0=[1,2])
-    print("parametri:",params) 
+    params,params_covariance=curve_fit(fit,x,y,p0=[1])
+    print(params)
     
     plt.figure(fig) 
     fitx=np.linspace(min(x)-10,max(x)+10,1000)
-    fitxask3=np.linspace(min(x),max(x)+5,12)
+    fitxask3=np.linspace(min(x),max(x)+4,100)
     print(fitxask3)
-    plt.plot(fitxask3,fit(fitxask3,*params),label='curve fit:%s,\n parameter: a=%.2f +-%.2f \n parameter: b=%.2f +- %.2f'%(fitname,params[0],params_covariance[0,0],params[1],params_covariance[1,1]))
+    plt.plot(fitxask3,fit(fitxask3,*params),label='curve fit:%s\n parameter: a=%.2f +-%.2f'%(fitname,-params[0],params_covariance[0,0]))
+    #plt.plot(fitxask3,fit(fitxask3,*params),label='curve fit:%s\n parameter: a=%.2f +-%.2f'%(fitname,params[0],params_covariance[0,0]))
     plt.gca().set_facecolor('0.88')
     plt.grid(True)
-    plt.xlim(0)
-    #plt.errorbar(x, y, yerr=yerr, label='σφάλμα',fmt='o', color='black',elinewidth=0.7)
+    plt.xlim(-1)
+    plt.errorbar(x, y, yerr=1,fmt='o', color='black',elinewidth=0.7)
     colors = np.random.rand(n)
     plt.scatter(x, y,label='data')
     #--------------------------
@@ -115,10 +119,10 @@ f230=[150.9,150.7,150.5,150.4,150.4]
 #----------------askisi 3------------------------
 #------------------------------------------------
 f = [18.47,26.38,34.13,42.88,54.04,63.26,66.96]
-n = [2,3,4,5,6,7,8]
-l_ = [30,21,16,13,9.5,8,7.5] #wave/2 in cm
+n = [1,2,3,4,5,6]
+l_ = [38,23,16,13,9.5,8] #wave/2 in cm
 l = [i*2 for i in l_]   #wave in cm
-L_ = 60.5 #length of string in cm
+L_ = 60 #length of string in cm
 
 #------------------------------------------------
 #------------function call-----------------------
@@ -133,8 +137,8 @@ favg = [avg_and_std(f)[0] for f in ask2]
 fstd = [avg_and_std(f)[1] for f in ask2]
 plot_graph(T,favg, name[1], 2, func2, expression2, 'f=F(T)','Τάση (N)','Συχνότητα (Hz)'	)'''
 #ask3
-plot_graph(n,l, name[2], 3, func3, expression3, 'λ_n=F(n)','n','Mήκος κύματος (cm)')
-
+plot_graph(n,l, name[2], 3, func3, expression3, 'λ_n=F(n)','n (αρμονικές)','Mήκος κύματος (cm)')
+#plot_graph(n,f, name[3], 4, func4, expression4, 'f=F(n)','n','Συχνότητα (Hz)')
 
 #------------------------------------------------
 #------------plot graph--------------------------
