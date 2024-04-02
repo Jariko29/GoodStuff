@@ -136,7 +136,7 @@ n = 1.6 #diktis diathlasis
 L = 0.5 #apostasi metaxi pigis kai othonis
 aktina = [0.10,0.12,0.13,0.14,0.15,0.17,0.18,0.19]
 gonia = [-(np.sin(i/(np.sqrt(i**2+L**2))))**2 for i in aktina]
-num_daktilioi = [1,2,3,4,5,6,7,8]
+num_daktilioi = [8,7,6,5,4,3,2,1]
 slope1,ordinate1,uncertainty1,slopeerr1,ordinateerr1 = lsq(num_daktilioi,gonia,len(num_daktilioi))
 plot_graph(num_daktilioi,gonia,0,0,name[0],'graph1','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)')
 print(slope1,'-+',slopeerr1,' ',ordinate1,'-+',ordinateerr1)
