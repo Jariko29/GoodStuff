@@ -140,3 +140,5 @@ gonia = [-(i/(np.sqrt(i**2+L**2)))**2 for i in aktina]
 num_daktilioi = [8,7,6,5,4,3,2,1,0]
 slope1,ordinate1,uncertainty1,slopeerr1,ordinateerr1 = lsq(num_daktilioi,gonia,len(num_daktilioi))
 plot_graph(num_daktilioi,gonia,0,0,name[0],'graph1','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)',slope1,slopeerr1,ordinate1,ordinateerr1)
+d = (l*n)/slope1
+print('Paxos imeniou : ',d)
