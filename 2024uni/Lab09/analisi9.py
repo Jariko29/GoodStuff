@@ -142,7 +142,7 @@ slope1,ordinate1,uncertainty1,slopeerr1,ordinateerr1 = lsq(num_daktilioi,gonia,l
 plot_graph(num_daktilioi,gonia,0,0,name[0],'graph1','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)',slope1,slopeerr1,ordinate1,ordinateerr1)
 derror = np.sqrt(((l*n)/(slope1**2)*slopeerr1)**2)
 d = (l*n)/slope1
-print('Paxos imeniou : %.5f -+ %.5f'%(d,derror))
+print('Paxos imeniou : %.5fm -+ %.5f'%(d,derror))
 
 #-----askisi 2---------------------------------
 #------------------------------------------------
@@ -151,3 +151,6 @@ gonia_galazio = [-(i/(np.sqrt(i**2+L**2)))**2 for i in aktina_galazio]
 num_daktilioi_galazio = [8,7,6,5,4,3,2,1,0]
 slope_galazio,ordinate_galazio,uncertainty_galazio,slopeerr_galazio,ordinateerr_galazio = lsq(num_daktilioi_galazio,gonia_galazio,len(num_daktilioi_galazio))
 plot_graph(num_daktilioi_galazio,gonia_galazio,0,0,name[1],'graph2','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)',slope_galazio,slopeerr_galazio,ordinate_galazio,ordinateerr_galazio)  
+l_galazio = d*slope_galazio/n
+derror_galazio = np.sqrt((((d)/(n))*slopeerr_galazio)**2+(((d)/(n))*derror)**2)
+print('Mikos kimatos galazio : %.3fnm -+ %.3f'%(l_galazio*10**9,derror_galazio*10**9))
