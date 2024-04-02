@@ -51,8 +51,8 @@ def avg_and_std(x):
 def func1 (x,a,b,c,d):
     return a*(c**2)/((x-b)**2+c**2)+d # fit , change if something else
 expression1 = r'$V = \alpha \left[\frac{\ c ^2}{(f - b)^2 + \ c ^2}\right]$'
-def func2 (x,a,b):
-    return a/(x+b) # fit , change if something else
+def func2 (x,a,b,c):
+    return (a/c)*x**b # fit , change if something else
 expression2 = r'$y = \frac{a}{x + b}$'
 #------------------------------------------------
 #------------plot graph--------------------------
@@ -86,16 +86,16 @@ def fit_plot (x,y,plotname,fig,fit,fitname):
 #------------------------------------------------
 #------------fit_2-------------------------------
 def fit_plot2 (x,y,plotname,fig,fit,fitname):
-    parm=[1,0]
+    parm=[1,2,1]
     params,params_covariance=curve_fit(fit,x,y,p0=parm,maxfev=10000)
     fitx=np.linspace(min(x),max(x),1000)
     fity=fit(fitx,*params)
-    a,b=params
-    aa,bb=np.sqrt(np.diag(params_covariance))
-    print("parametri:a=%.2f, b=%.2f"%(a,b))
+    a,b,c=params
+    aa,bb,cc=np.sqrt(np.diag(params_covariance))
+    print("parametri:a=%.2f, b=%.2f,c=%.2f"%(a,b,c))
     plt.figure(fig)
     plt.grid(True)
-    plt.plot(fitx,fity,label='curve fit:%s,\n parameters: a=%.2f b=%.2f \n covariance: a=+- %.0f, b=+- %.1f '%(fitname,a,b,aa,bb))
+    plt.plot(fitx,fity,label='curve fit:%s,\n parameters: a=%.2f b=%.2f c=%.2f\n covariance: a=+- %.0f, b=+- %.1f c=+- %.1f'%(fitname,a,b,c,aa,bb,cc))
     plt.legend()
     plt.savefig(plotname, dpi=300)
 #------------------------------------------------
