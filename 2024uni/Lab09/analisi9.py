@@ -142,7 +142,7 @@ slope1,ordinate1,uncertainty1,slopeerr1,ordinateerr1 = lsq(num_daktilioi,gonia,l
 plot_graph(num_daktilioi,gonia,0,0,name[0],'graph1','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)',slope1,slopeerr1,ordinate1,ordinateerr1)
 derror = np.sqrt(((l*n)/(slope1**2)*slopeerr1)**2)
 d = (l*n)/slope1
-print('Paxos imeniou : %.3f -+ %.3f',(d,derror))
+print('Paxos imeniou : %.5f -+ %.5f'%(d,derror))
 
 #-----askisi 2---------------------------------
 #------------------------------------------------
