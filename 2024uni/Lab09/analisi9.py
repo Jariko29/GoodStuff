@@ -163,3 +163,12 @@ plot_graph(num_daktilioi_prasino,gonia_prasino,0,0,name[2],'graph3','Gonia vs Nu
 l_prasino = d*slope_prasino/n
 derror_prasino = np.sqrt((((d)/(n))*slopeerr_prasino)**2+(((d)/(n))*derror)**2)
 print('Mikos kimatos prasino : %.3fnm -+ %.3f'%(l_prasino*10**9,derror_prasino*10**9))
+
+aktina_kitrino = [0,0.01,0.02,0.045,0.07,0.10,0.13,0.17,0.21]
+gonia_kitrino = [-(i/(np.sqrt(i**2+L**2)))**2 for i in aktina_kitrino]
+num_daktilioi_kitrino = [8,7,6,5,4,3,2,1,0]
+slope_kitrino,ordinate_kitrino,uncertainty_kitrino,slopeerr_kitrino,ordinateerr_kitrino = lsq(num_daktilioi_kitrino,gonia_kitrino,len(num_daktilioi_kitrino))
+plot_graph(num_daktilioi_kitrino,gonia_kitrino,0,0,name[3],'graph4','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)',slope_kitrino,slopeerr_kitrino,ordinate_kitrino,ordinateerr_kitrino)
+l_kitrino = d*slope_kitrino/n
+derror_kitrino = np.sqrt((((d)/(n))*slopeerr_kitrino)**2+(((d)/(n))*derror)**2)
+print('Mikos kimatos kitrino : %.3fnm -+ %.3f'%(l_kitrino*10**9,derror_kitrino*10**9))
