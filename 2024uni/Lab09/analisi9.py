@@ -146,3 +146,8 @@ print('Paxos imeniou : %.5f -+ %.5f'%(d,derror))
 
 #-----askisi 2---------------------------------
 #------------------------------------------------
+aktina_galazio = [0,0.01,0.02,0.045,0.07,0.10,0.13,0.17,0.21]
+gonia_galazio = [-(i/(np.sqrt(i**2+L**2)))**2 for i in aktina_galazio]  
+num_daktilioi_galazio = [8,7,6,5,4,3,2,1,0]
+slope_galazio,ordinate_galazio,uncertainty_galazio,slopeerr_galazio,ordinateerr_galazio = lsq(num_daktilioi_galazio,gonia_galazio,len(num_daktilioi_galazio))
+plot_graph(num_daktilioi_galazio,gonia_galazio,0,0,name[1],'graph2','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)',slope_galazio,slopeerr_galazio,ordinate_galazio,ordinateerr_galazio)  
