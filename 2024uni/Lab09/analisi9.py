@@ -115,7 +115,7 @@ def linear (x,a,b):
     return a*x+b
 #------------------------------------------------
 
-def linear_plot(x,y,ye,xe,slope,slopeer,ordinate,ordinateer,plotname,fig,fit,graphtitle,xlab,ylab):
+def linear_plot(x,y,ye,xe,slope,slopeer,ordinate,ordinateer,plotname,fig,graphtitle,xlab,ylab):
     plt.figure(fig)
     plt.grid(True)
     plt.errorbar(x,y,yerr=ye,xerr=xe,fmt='o',markerfacecolor='none', color='black',elinewidth=0.7)
@@ -135,6 +135,5 @@ L = 0.5 #apostasi metaxi pigis kai othonis
 aktina = [0.01,0.02,0.03,0.04,0.05,0.06,0.07,0.08]
 gonia = [(np.sin(i/(np.sqrt(i**2+L**2))))**2 for i in aktina]
 num_daktilioi = [1,2,3,4,5,6,7,8]
-
-plot_graph(num_daktilioi,gonia,0,0,name[0],'graph1','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)')
-
+slope1,ordinate1,uncertainty1,slopeerr1,ordinateerr1 = lsq(num_daktilioi,gonia,len(num_daktilioi))
+linear_plot(num_daktilioi,gonia,0,0,slope1,slopeerr1,ordinate1,ordinateerr1,name[0],'graph1','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)')
