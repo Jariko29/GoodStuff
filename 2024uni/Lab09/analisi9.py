@@ -133,7 +133,7 @@ def linear_plot(x,y,ye,xe,slope,slopeer,ordinate,ordinateer,plotname,fig,fit,gra
 #-----askisi 1---------------------------------
 L = 0.5 #apostasi metaxi pigis kai othonis
 aktina = [0.01,0.02,0.03,0.04,0.05,0.06,0.07,0.08]
-gonia = [(np.sin(i/(sqrt(i**2+L**2))))**2 for i in aktina]
+gonia = [(sin(i/(sqrt(i**2+L**2))))**2 for i in aktina]
 num_daktilioi = [1,2,3,4,5,6,7,8]
 
 plot_graph(num_daktilioi,gonia,0,0,name[0],'graph1','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)')
