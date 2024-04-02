@@ -57,7 +57,7 @@ def plot_graph(x,y,xerr,yerr,plotname,fig,graphtitle,xlab,ylab,slope,slopeer,ord
     plt.gca().set_facecolor('0.88')
     plt.grid(True)
     plt.errorbar(x, y, xerr=xerr,yerr=yerr,fmt='o',markerfacecolor='none', color='black',elinewidth=0.7,label='data')
-    plt.plot(x,slope*np.array(x)+ordinate,label='y=(%.0f+-%.0f) x +(%.1f+-%.1f)'%(slope,slopeer,ordinate,ordinateer),color='red')
+    plt.plot(x,slope*np.array(x)+ordinate,label='y=(%.4f+-%.4f) x +(%.3f+-%.3f)'%(slope,slopeer,ordinate,ordinateer),color='red')
     plt.title(graphtitle)
     plt.xlabel(xlab)
     plt.ylabel(ylab)
@@ -135,7 +135,7 @@ def linear_plot(x,y,ye,xe,slope,slopeer,ordinate,ordinateer,plotname,fig,graphti
 l = 589*10**-9 #mikos kimatos
 n = 1.6 #diktis diathlasis
 L = 0.5 #apostasi metaxi pigis kai othonis
-aktina = [0.01,0.03,0.045,0.07,0.10,0.12,0.15,0.18]
+aktina = [0.005,0.02,0.045,0.07,0.10,0.12,0.15,0.18]
 gonia = [-(np.sin(i/(np.sqrt(i**2+L**2))))**2 for i in aktina]
 num_daktilioi = [8,7,6,5,4,3,2,1]
 slope1,ordinate1,uncertainty1,slopeerr1,ordinateerr1 = lsq(num_daktilioi,gonia,len(num_daktilioi))
