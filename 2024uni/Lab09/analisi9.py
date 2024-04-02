@@ -146,6 +146,7 @@ print('Paxos imeniou : %.5fm -+ %.5f'%(d,derror))
 
 #-----askisi 2---------------------------------
 #------------------------------------------------
+#-----galazio---------------------------------
 aktina_galazio = [0,0.01,0.02,0.045,0.07,0.10,0.13,0.17,0.21]
 gonia_galazio = [-(i/(np.sqrt(i**2+L**2)))**2 for i in aktina_galazio]  
 num_daktilioi_galazio = [8,7,6,5,4,3,2,1,0]
@@ -154,7 +155,7 @@ plot_graph(num_daktilioi_galazio,gonia_galazio,0,0,name[1],'graph2','Gonia vs Nu
 l_galazio = d*slope_galazio/n
 derror_galazio = np.sqrt((((d)/(n))*slopeerr_galazio)**2+(((d)/(n))*derror)**2)
 print('Mikos kimatos galazio : %.3fnm -+ %.3f'%(l_galazio*10**9,derror_galazio*10**9))
-
+#-----prasino---------------------------------
 aktina_prasino = [0,0.01,0.02,0.045,0.07,0.10,0.13,0.17,0.21]
 gonia_prasino = [-(i/(np.sqrt(i**2+L**2)))**2 for i in aktina_prasino]
 num_daktilioi_prasino = [8,7,6,5,4,3,2,1,0]
@@ -163,7 +164,7 @@ plot_graph(num_daktilioi_prasino,gonia_prasino,0,0,name[2],'graph3','Gonia vs Nu
 l_prasino = d*slope_prasino/n
 derror_prasino = np.sqrt((((d)/(n))*slopeerr_prasino)**2+(((d)/(n))*derror)**2)
 print('Mikos kimatos prasino : %.3fnm -+ %.3f'%(l_prasino*10**9,derror_prasino*10**9))
-
+#-----kitrino---------------------------------
 aktina_kitrino = [0,0.01,0.02,0.045,0.07,0.10,0.13,0.17,0.21]
 gonia_kitrino = [-(i/(np.sqrt(i**2+L**2)))**2 for i in aktina_kitrino]
 num_daktilioi_kitrino = [8,7,6,5,4,3,2,1,0]
