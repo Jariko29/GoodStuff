@@ -136,4 +136,5 @@ aktina = [0.01,0.02,0.03,0.04,0.05,0.06,0.07,0.08]
 gonia = [(np.sin(i/(np.sqrt(i**2+L**2))))**2 for i in aktina]
 num_daktilioi = [1,2,3,4,5,6,7,8]
 slope1,ordinate1,uncertainty1,slopeerr1,ordinateerr1 = lsq(num_daktilioi,gonia,len(num_daktilioi))
-linear_plot(num_daktilioi,gonia,0,0,slope1,slopeerr1,ordinate1,ordinateerr1,name[0],'graph1','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)')
+plot_graph(num_daktilioi,gonia,0,0,name[0],'graph1','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)')
+print(slope1)
