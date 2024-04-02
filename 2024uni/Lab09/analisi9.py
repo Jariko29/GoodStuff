@@ -52,11 +52,12 @@ expression2 = r'$y = \frac{a}{x + b}$'
 #------------------------------------------------
 #------------plot graph--------------------------
 #------------------------------------------------
-def plot_graph(x, y,xerr,yerr,plotname,fig,graphtitle,xlab,ylab):
+def plot_graph(x,y,xerr,yerr,plotname,fig,graphtitle,xlab,ylab,slope,slopeer,ordinate,ordinateer):
     plt.figure(fig) 
     plt.gca().set_facecolor('0.88')
     plt.grid(True)
     plt.errorbar(x, y, xerr=xerr,yerr=yerr,fmt='o',markerfacecolor='none', color='black',elinewidth=0.7,label='data')
+    plt.plot(x,slope*np.array(x)+ordinate,label='y=(%.0f+-%.0f) x +(%.1f+-%.1f)'%(slope,slopeer,ordinate,ordinateer),color='red')
     plt.title(graphtitle)
     plt.xlabel(xlab)
     plt.ylabel(ylab)
@@ -138,5 +139,5 @@ aktina = [0.01,0.03,0.045,0.07,0.10,0.12,0.15,0.18]
 gonia = [-(np.sin(i/(np.sqrt(i**2+L**2))))**2 for i in aktina]
 num_daktilioi = [8,7,6,5,4,3,2,1]
 slope1,ordinate1,uncertainty1,slopeerr1,ordinateerr1 = lsq(num_daktilioi,gonia,len(num_daktilioi))
-plot_graph(num_daktilioi,gonia,0,0,name[0],'graph1','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)')
+plot_graph(num_daktilioi,gonia,0,0,name[0],'graph1','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)',slope1,slopeerr1,ordinate1,ordinateerr1)
 print(slope1,'-+',slopeerr1,' ',ordinate1,'-+',ordinateerr1)
