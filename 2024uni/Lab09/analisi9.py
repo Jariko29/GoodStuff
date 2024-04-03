@@ -149,8 +149,8 @@ gonia_deksia = [-(i/(np.sqrt(i**2+L**2)))**2 for i in aktina_deksia]
 num_daktilioi_deksia = [9,8,7,6,5,4,3,2,1,0]
 slope_deksia,ordinate_deksia,uncertainty_deksia,slopeerr_deksia,ordinateerr_deksia = lsq(num_daktilioi_deksia,gonia_deksia,len(num_daktilioi_deksia))
 plot_graph(num_daktilioi_deksia,gonia_deksia,0,0,name[4],'graph5','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)',slope_deksia,slopeerr_deksia,ordinate_deksia,ordinateerr_deksia)
-l_deksia = d*slope_deksia/n
-derror_deksia = np.sqrt
+d_deksia = (l*n)/slope_deksia
+print(d_deksia*10**3)
 
 #-----askisi 2---------------------------------
 #------------------------------------------------
