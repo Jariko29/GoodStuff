@@ -158,7 +158,8 @@ print('Paxos imeniou deksia : %.5fmm -+ %.5f'%(d_deksia*10**3,derror_deksia*10**
 #-----galazio---------------------------------
 pigi2 = 0.30 #mikos pigis
 mika = 0.412 #apostasi mikas othonis
-aktina_galazio = [0.1075,0.1235,0.1385,0.1525,0.1645,0.1765,0.1865,0.1955,0.2045,0.2115,0.2175]
+aktina_galazio_fake=[0,1,0.8,0.7,0.6,0.5,0.4,0.3,0.2,0.1,0]
+aktina_galazio = np.cumsum(aktina_galazio_fake) + (0.222/2) #euros485-565
 gonia_galazio = [-(i/(np.sqrt(i**2+mika**2)))**2 for i in aktina_galazio]  
 num_daktilioi_galazio = [10,9,8,7,6,5,4,3,2,1,0]
 slope_galazio,ordinate_galazio,uncertainty_galazio,slopeerr_galazio,ordinateerr_galazio = lsq(num_daktilioi_galazio,gonia_galazio,len(num_daktilioi_galazio))
@@ -168,7 +169,7 @@ derror_galazio = np.sqrt((((d)/(n))*slopeerr_galazio)**2+(((d)/(n))*derror)**2)
 print('Mikos kimatos galazio : %.3fnm -+ %.3f'%(l_galazio*10**9,derror_galazio*10**9))
 #-----prasino---------------------------------
 aktina_prasino_fake = [0,0.02,0.0150,0.014,0.014,0.013,0.013,0.012,0.011,0.01]
-aktina_prasino = np.cumsum(aktina_prasino_fake) + (0.222/2)
+aktina_prasino = np.cumsum(aktina_prasino_fake) + (0.222/2) #euros485-565
 print(aktina_prasino)
 gonia_prasino = [-(i/(np.sqrt(i**2+mika**2)))**2 for i in aktina_prasino]
 num_daktilioi_prasino = [i for i in range(len(aktina_prasino)-1,-1,-1)]
@@ -179,7 +180,8 @@ l_prasino = d*slope_prasino/n
 derror_prasino = np.sqrt((((d)/(n))*slopeerr_prasino)**2+(((d)/(n))*derror)**2)
 print('Mikos kimatos prasino : %.3fnm -+ %.3f'%(l_prasino*10**9,derror_prasino*10**9))
 #-----kitrino---------------------------------
-aktina_kitrino = [0,0.01,0.02,0.045,0.07,0.10,0.13,0.17,0.21]
+aktina_kitrino_fake = [0,0.021,0.018,0.018,0.016,0.015,0.013,0.012,0.012,0.011]
+aktina_kitrino = np.cumsum(aktina_kitrino_fake) + (0.22/2) #euros485-565
 gonia_kitrino = [-(i/(np.sqrt(i**2+L**2)))**2 for i in aktina_kitrino]
 num_daktilioi_kitrino = [8,7,6,5,4,3,2,1,0]
 slope_kitrino,ordinate_kitrino,uncertainty_kitrino,slopeerr_kitrino,ordinateerr_kitrino = lsq(num_daktilioi_kitrino,gonia_kitrino,len(num_daktilioi_kitrino))
