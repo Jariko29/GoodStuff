@@ -151,7 +151,7 @@ slope_deksia,ordinate_deksia,uncertainty_deksia,slopeerr_deksia,ordinateerr_deks
 plot_graph(num_daktilioi_deksia,gonia_deksia,0,0,name[4],'graph5','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)',slope_deksia,slopeerr_deksia,ordinate_deksia,ordinateerr_deksia)
 d_deksia = (l*n)/slope_deksia
 derror_deksia = np.sqrt(((l*n)/(slope_deksia**2)*slopeerr_deksia)**2)
-print('Paxos deksia : %.5fmm -+ %.5f'%(d_deksia*10**3,derror_deksia*10**3))
+print('Paxos imeniou deksia : %.5fmm -+ %.5f'%(d_deksia*10**3,derror_deksia*10**3))
 
 #-----askisi 2---------------------------------
 #------------------------------------------------
@@ -167,12 +167,14 @@ l_galazio = d*slope_galazio/n
 derror_galazio = np.sqrt((((d)/(n))*slopeerr_galazio)**2+(((d)/(n))*derror)**2)
 print('Mikos kimatos galazio : %.3fnm -+ %.3f'%(l_galazio*10**9,derror_galazio*10**9))
 #-----prasino---------------------------------
-aktina_prasino = [0.1075,0.1235,0.1385,0.1525,0.1645,0.1765,0.1865,0.1955,0.2045,0.2115,0.2175]
+aktina_prasino_fake = [0,0.018,0.016,0.015,0.013,0.011,0.01,0.009,0.008,0.006]
+aktina_prasino = np.cumsum(aktina_prasino_fake) + 0.1075
+print(aktina_prasino)
 gonia_prasino = [-(i/(np.sqrt(i**2+mika**2)))**2 for i in aktina_prasino]
-num_daktilioi_prasino = [i for i in range(len(aktina_prasino),0,-1)]
+num_daktilioi_prasino = [i for i in range(len(aktina_prasino)-1,-1,-1)]
 print(num_daktilioi_prasino)
 slope_prasino,ordinate_prasino,uncertainty_prasino,slopeerr_prasino,ordinateerr_prasino = lsq(num_daktilioi_prasino,gonia_prasino,len(num_daktilioi_prasino))
-plot_graph(num_daktilioi_prasino,gonia_prasino,0,0,name[2],'graph3','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)',slope_prasino,slopeerr_prasino,ordinate_prasino,ordinateerr_prasino)
+plot_graph(num_daktilioi_prasino,gonia_prasino,0,0,name[2],'graph3','Gonia vs Num_daktilioi (praasino)','Num_daktilioi','sin^2(gonia)',slope_prasino,slopeerr_prasino,ordinate_prasino,ordinateerr_prasino)
 l_prasino = d*slope_prasino/n
 derror_prasino = np.sqrt((((d)/(n))*slopeerr_prasino)**2+(((d)/(n))*derror)**2)
 print('Mikos kimatos prasino : %.3fnm -+ %.3f'%(l_prasino*10**9,derror_prasino*10**9))
