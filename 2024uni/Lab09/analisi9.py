@@ -158,8 +158,8 @@ print('Paxos imeniou deksia : %.5fmm -+ %.5f'%(d_deksia*10**3,derror_deksia*10**
 #-----galazio---------------------------------
 pigi2 = 0.30 #mikos pigis
 mika = 0.412 #apostasi mikas othonis
-mika2=0.30
-aktina_galazio_fake=[0,0.014,0.012,0.010,0.007,0.007,0.006,0.005,0.004,0.004]
+mika2=0.30 #apostasi mikas othonis
+aktina_galazio_fake = [0,0.012,0.011,0.01,0.009,0.008,0.008,0.007,0.006,0.005,0.005,0.004] #[0,0.014,0.012,0.010,0.007,0.007,0.006,0.005,0.004,0.004] 394.335
 aktina_galazio = np.cumsum(aktina_galazio_fake) + (0.184/2) #euros485-565
 gonia_galazio = [-(i/(np.sqrt(i**2+mika2**2)))**2 for i in aktina_galazio]  
 num_daktilioi_galazio = [i for i in range(len(aktina_galazio)-1,-1,-1)]
