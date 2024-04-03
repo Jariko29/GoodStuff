@@ -143,7 +143,7 @@ slope1,ordinate1,uncertainty1,slopeerr1,ordinateerr1 = lsq(num_daktilioi,gonia,l
 plot_graph(num_daktilioi,gonia,0,0,name[0],'graph1','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)',slope1,slopeerr1,ordinate1,ordinateerr1)
 derror = np.sqrt(((l*n)/(slope1**2)*slopeerr1)**2)
 d = (l*n)/slope1
-print('Paxos imeniou : %.5fmm -+ %.5f'%(d*10**3,derror*10**3))
+print('Paxos imeniou aristera: %.5fmm -+ %.5f'%(d*10**3,derror*10**3))
 aktina_deksia = [0.075,0.095,0.113,0.129,0.143,0.155,0.166,0.176,0.183,0.189]
 gonia_deksia = [-(i/(np.sqrt(i**2+L**2)))**2 for i in aktina_deksia]
 num_daktilioi_deksia = [9,8,7,6,5,4,3,2,1,0]
@@ -159,12 +159,12 @@ print('Paxos imeniou deksia : %.5fmm -+ %.5f'%(d_deksia*10**3,derror_deksia*10**
 pigi2 = 0.30 #mikos pigis
 mika = 0.412 #apostasi mikas othonis
 mika2=0.404
-aktina_galazio_fake=[0,0.016,0.017,0.014,0.014,0.014,0.011,0.011,0.009]
-aktina_galazio = np.cumsum(aktina_galazio_fake) + (0.198/2) #euros485-565
+aktina_galazio_fake=[0,0.0]
+aktina_galazio = np.cumsum(aktina_galazio_fake) + (0.184/2) #euros485-565
 gonia_galazio = [-(i/(np.sqrt(i**2+mika2**2)))**2 for i in aktina_galazio]  
 num_daktilioi_galazio = [i for i in range(len(aktina_galazio)-1,-1,-1)]
 slope_galazio,ordinate_galazio,uncertainty_galazio,slopeerr_galazio,ordinateerr_galazio = lsq(num_daktilioi_galazio,gonia_galazio,len(num_daktilioi_galazio))
-plot_graph(num_daktilioi_galazio,gonia_galazio,0,0.1,name[1],'graph2','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)',slope_galazio,slopeerr_galazio,ordinate_galazio,ordinateerr_galazio)  
+plot_graph(num_daktilioi_galazio,gonia_galazio,0,0.03,name[1],'graph2','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)',slope_galazio,slopeerr_galazio,ordinate_galazio,ordinateerr_galazio)  
 l_galazio = d*slope_galazio/n
 derror_galazio = np.sqrt((((d)/(n))*slopeerr_galazio)**2+(((d)/(n))*derror)**2)
 print('Mikos kimatos galazio : %.3fnm -+ %.3f'%(l_galazio*10**9,derror_galazio*10**9))
