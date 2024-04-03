@@ -171,10 +171,8 @@ print('Mikos kimatos galazio : %.3fnm -+ %.3f'%(l_galazio*10**9,derror_galazio*1
 #-----prasino---------------------------------
 aktina_prasino_fake = [0,0.02,0.0150,0.014,0.014,0.013,0.013,0.012,0.011,0.01]
 aktina_prasino = np.cumsum(aktina_prasino_fake) + (0.222/2) #euros485-565
-print(aktina_prasino)
 gonia_prasino = [-(i/(np.sqrt(i**2+mika**2)))**2 for i in aktina_prasino]
 num_daktilioi_prasino = [i for i in range(len(aktina_prasino)-1,-1,-1)]
-print(num_daktilioi_prasino)
 slope_prasino,ordinate_prasino,uncertainty_prasino,slopeerr_prasino,ordinateerr_prasino = lsq(num_daktilioi_prasino,gonia_prasino,len(num_daktilioi_prasino))
 plot_graph(num_daktilioi_prasino,gonia_prasino,0,0,name[2],'graph3','Gonia vs Num_daktilioi (praasino)','Num_daktilioi','sin^2(gonia)',slope_prasino,slopeerr_prasino,ordinate_prasino,ordinateerr_prasino)
 l_prasino = d*slope_prasino/n
@@ -182,11 +180,12 @@ derror_prasino = np.sqrt((((d)/(n))*slopeerr_prasino)**2+(((d)/(n))*derror)**2)
 print('Mikos kimatos prasino : %.3fnm -+ %.3f'%(l_prasino*10**9,derror_prasino*10**9))
 #-----kitrino---------------------------------
 aktina_kitrino_fake = [0,0.021,0.018,0.018,0.016,0.015,0.013,0.012,0.012,0.011]
-aktina_kitrino = np.cumsum(aktina_kitrino_fake) + (0.22/2) #euros485-565
+aktina_kitrino = np.cumsum(aktina_kitrino_fake) + (0.222/2) #euros485-565
 gonia_kitrino = [-(i/(np.sqrt(i**2+mika*2)))**2 for i in aktina_kitrino]
 num_daktilioi_kitrino = [i for i in range(len(aktina_kitrino)-1,-1,-1)]
 slope_kitrino,ordinate_kitrino,uncertainty_kitrino,slopeerr_kitrino,ordinateerr_kitrino = lsq(num_daktilioi_kitrino,gonia_kitrino,len(num_daktilioi_kitrino))
 plot_graph(num_daktilioi_kitrino,gonia_kitrino,0,0,name[3],'graph4','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)',slope_kitrino,slopeerr_kitrino,ordinate_kitrino,ordinateerr_kitrino)
 l_kitrino = d*slope_kitrino/n
+print(l_kitrino)
 derror_kitrino = np.sqrt((((d)/(n))*slopeerr_kitrino)**2+(((d)/(n))*derror)**2)
 print('Mikos kimatos kitrino : %.3fnm -+ %.3f'%(l_kitrino*10**9,derror_kitrino*10**9))
