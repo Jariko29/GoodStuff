@@ -171,7 +171,6 @@ print('Mikos kimatos galazio : %.3fnm -+ %.3f'%(l_galazio*10**9,derror_galazio*1
 #-----prasino---------------------------------
 aktina_prasino_fake = [0,0.02,0.0150,0.014,0.014,0.013,0.013,0.012,0.011,0.01]
 aktina_prasino = np.cumsum(aktina_prasino_fake) + (0.222/2) #euros485-565
-print(aktina_prasino)
 gonia_prasino = [-(i/(np.sqrt(i**2+mika**2)))**2 for i in aktina_prasino]
 num_daktilioi_prasino = [i for i in range(len(aktina_prasino)-1,-1,-1)]
 slope_prasino,ordinate_prasino,uncertainty_prasino,slopeerr_prasino,ordinateerr_prasino = lsq(num_daktilioi_prasino,gonia_prasino,len(num_daktilioi_prasino))
@@ -182,6 +181,7 @@ print('Mikos kimatos prasino : %.3fnm -+ %.3f'%(l_prasino*10**9,derror_prasino*1
 #-----kitrino---------------------------------
 aktina_kitrino_fake = [0,0.021,0.018,0.018,0.016,0.015,0.013,0.012,0.012,0.011]
 aktina_kitrino = np.cumsum(aktina_kitrino_fake) + (0.222/2) #euros485-565
+print(aktina_kitrino)
 gonia_kitrino = [-(i/(np.sqrt(i**2+mika**2)))**2 for i in aktina_kitrino]
 num_daktilioi_kitrino = [i for i in range(len(aktina_kitrino)-1,-1,-1)]
 slope_kitrino,ordinate_kitrino,uncertainty_kitrino,slopeerr_kitrino,ordinateerr_kitrino = lsq(num_daktilioi_kitrino,gonia_kitrino,len(num_daktilioi_kitrino))
