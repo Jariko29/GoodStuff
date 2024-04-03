@@ -144,6 +144,13 @@ plot_graph(num_daktilioi,gonia,0,0,name[0],'graph1','Gonia vs Num_daktilioi','Nu
 derror = np.sqrt(((l*n)/(slope1**2)*slopeerr1)**2)
 d = (l*n)/slope1
 print('Paxos imeniou : %.5fmm -+ %.5f'%(d*10**3,derror*10**3))
+aktina_deksia = [0.075,0.095,0.113,0.129,0.143,0.155,0.166,0.176,0.183,0.189]
+gonia_deksia = [-(i/(np.sqrt(i**2+L**2)))**2 for i in aktina_deksia]
+num_daktilioi_deksia = [9,8,7,6,5,4,3,2,1,0]
+slope_deksia,ordinate_deksia,uncertainty_deksia,slopeerr_deksia,ordinateerr_deksia = lsq(num_daktilioi_deksia,gonia_deksia,len(num_daktilioi_deksia))
+plot_graph(num_daktilioi_deksia,gonia_deksia,0,0,name[4],'graph5','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)',slope_deksia,slopeerr_deksia,ordinate_deksia,ordinateerr_deksia)
+l_deksia = d*slope_deksia/n
+derror_deksia = np.sqrt
 
 #-----askisi 2---------------------------------
 #------------------------------------------------
