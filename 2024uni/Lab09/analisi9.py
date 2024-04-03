@@ -140,7 +140,7 @@ aktina = [0.075,0.097,0.115,0.13,0.144,0.158,0.171,0.181,0.190,0.198]
 gonia = [-(i/(np.sqrt(i**2+L**2)))**2 for i in aktina]
 num_daktilioi = [9,8,7,6,5,4,3,2,1,0]
 slope1,ordinate1,uncertainty1,slopeerr1,ordinateerr1 = lsq(num_daktilioi,gonia,len(num_daktilioi))
-plot_graph(num_daktilioi,gonia,0,5.37*10**-3,name[0],'graph1','ημ^2(α) = f(m)','Αροιθμός Δακτυλίων',r'$\eta\mu^{2}(\alpha)$',slope1,slopeerr1,ordinate1,ordinateerr1)
+plot_graph(num_daktilioi,gonia,0,5.37*10**-3,name[0],'graph1',r'$\eta\mu^{2}(\alpha) = f(m)$','Αροιθμός Δακτυλίων',r'$\eta\mu^{2}(\alpha)$',slope1,slopeerr1,ordinate1,ordinateerr1)
 derror = np.sqrt(((l*n)/(slope1**2)*slopeerr1)**2)
 d = (l*n)/slope1
 print('Paxos imeniou aristera: %.5fmm -+ %.5f'%(d*10**3,derror*10**3))
