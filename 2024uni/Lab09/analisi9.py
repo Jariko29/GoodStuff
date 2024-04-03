@@ -142,7 +142,7 @@ aktina = [0.075,0.097,0.115,0.13,0.144,0.158,0.171,0.181,0.190,0.198]
 gonia = [-(i/(np.sqrt(i**2+L**2)))**2 for i in aktina]
 num_daktilioi = [9,8,7,6,5,4,3,2,1,0]
 slope1,ordinate1,uncertainty1,slopeerr1,ordinateerr1 = lsq(num_daktilioi,gonia,len(num_daktilioi))
-plot_graph(num_daktilioi,gonia,0,5.37*10**-3,name[0],'graph1',r'$\eta\mu^{2}(\alpha) = f(m)$','Αροιθμός Δακτυλίων (m)',r'$\eta\mu^{2}(\alpha)$',slope1,slopeerr1,ordinate1,ordinateerr1)
+plot_graph(num_daktilioi,gonia,0,5.37*10**-3,name[0],'graph1',r'$\eta\mu^{2}(\alpha) = f(m)$','Αριθμός Δακτυλίων (m)',r'$\eta\mu^{2}(\alpha)$',slope1,slopeerr1,ordinate1,ordinateerr1)
 derror = np.sqrt(((l*n)/(slope1**2)*slopeerr1)**2)
 d = (l*n)/slope1
 print('Paxos imeniou aristera: %.5fmm -+ %.5f'%(d*10**3,derror*10**3))
@@ -150,7 +150,7 @@ aktina_deksia = [0.075,0.095,0.113,0.129,0.143,0.155,0.166,0.176,0.183,0.189]
 gonia_deksia = [-(i/(np.sqrt(i**2+L**2)))**2 for i in aktina_deksia]
 num_daktilioi_deksia = [9,8,7,6,5,4,3,2,1,0]
 slope_deksia,ordinate_deksia,uncertainty_deksia,slopeerr_deksia,ordinateerr_deksia = lsq(num_daktilioi_deksia,gonia_deksia,len(num_daktilioi_deksia))
-plot_graph(num_daktilioi_deksia,gonia_deksia,0,5.37*10**-3,name[4],'graph5',r'$\eta\mu^{2}(\alpha) = f(m)$','Αροιθμός Δακτυλίων (m)',r'$\eta\mu^{2}(\alpha)$',slope_deksia,slopeerr_deksia,ordinate_deksia,ordinateerr_deksia)
+plot_graph(num_daktilioi_deksia,gonia_deksia,0,5.37*10**-3,name[4],'graph5',r'$\eta\mu^{2}(\alpha) = f(m)$','Αριθμός Δακτυλίων (m)',r'$\eta\mu^{2}(\alpha)$',slope_deksia,slopeerr_deksia,ordinate_deksia,ordinateerr_deksia)
 d_deksia = (l*n)/slope_deksia
 derror_deksia = np.sqrt(((l*n)/(slope_deksia**2)*slopeerr_deksia)**2)
 print('Paxos imeniou deksia : %.5fmm -+ %.5f'%(d_deksia*10**3,derror_deksia*10**3))
@@ -167,7 +167,7 @@ aktina_galazio = np.cumsum(aktina_galazio_fake) + (0.184/2) #euros485-565
 gonia_galazio = [-(i/(np.sqrt(i**2+mika2**2)))**2 for i in aktina_galazio]  
 num_daktilioi_galazio = [i for i in range(len(aktina_galazio)-1,-1,-1)]
 slope_galazio,ordinate_galazio,uncertainty_galazio,slopeerr_galazio,ordinateerr_galazio = lsq(num_daktilioi_galazio,gonia_galazio,len(num_daktilioi_galazio))
-plot_graph(num_daktilioi_galazio,gonia_galazio,0,5.37*10**-3,name[1],'graph2',r'$\eta\mu^{2}(\alpha) = f(m)$','Αροιθμός Δακτυλίων (m)',r'$\eta\mu^{2}(\alpha)$',slope_galazio,slopeerr_galazio,ordinate_galazio,ordinateerr_galazio)  
+plot_graph(num_daktilioi_galazio,gonia_galazio,0,5.37*10**-3,name[1],'graph2',r'$\eta\mu^{2}(\alpha) = f(m)$','Αριθμός Δακτυλίων (m)',r'$\eta\mu^{2}(\alpha)$',slope_galazio,slopeerr_galazio,ordinate_galazio,ordinateerr_galazio)  
 l_galazio = d*slope_galazio/n
 derror_galazio = np.sqrt((((d)/(n))*slopeerr_galazio)**2+(((d)/(n))*derror)**2)
 print('Mikos kimatos galazio : %.3fnm -+ %.3f'%(l_galazio*10**9,derror_galazio*10**9))
@@ -177,7 +177,7 @@ aktina_prasino = np.cumsum(aktina_prasino_fake) + (0.222/2) #euros485-565
 gonia_prasino = [-(i/(np.sqrt(i**2+mika**2)))**2 for i in aktina_prasino]
 num_daktilioi_prasino = [i for i in range(len(aktina_prasino)-1,-1,-1)]
 slope_prasino,ordinate_prasino,uncertainty_prasino,slopeerr_prasino,ordinateerr_prasino = lsq(num_daktilioi_prasino,gonia_prasino,len(num_daktilioi_prasino))
-plot_graph(num_daktilioi_prasino,gonia_prasino,0,5.37*10**-3,name[2],'graph3',r'$\eta\mu^{2}(\alpha) = f(m)$','Αροιθμός Δακτυλίων (m)',r'$\eta\mu^{2}(\alpha)$',slope_prasino,slopeerr_prasino,ordinate_prasino,ordinateerr_prasino)
+plot_graph(num_daktilioi_prasino,gonia_prasino,0,5.37*10**-3,name[2],'graph3',r'$\eta\mu^{2}(\alpha) = f(m)$','Αριθμός Δακτυλίων (m)',r'$\eta\mu^{2}(\alpha)$',slope_prasino,slopeerr_prasino,ordinate_prasino,ordinateerr_prasino)
 l_prasino = d*slope_prasino/n
 derror_prasino = np.sqrt((((d)/(n))*slopeerr_prasino)**2+(((d)/(n))*derror)**2)
 print('Mikos kimatos prasino : %.3fnm -+ %.3f'%(l_prasino*10**9,derror_prasino*10**9))
@@ -187,7 +187,7 @@ aktina_kitrino = np.cumsum(aktina_kitrino_fake) + (0.222/2) #euros485-565
 gonia_kitrino = [-(i/(np.sqrt(i**2+mika**2)))**2 for i in aktina_kitrino]
 num_daktilioi_kitrino = [i for i in range(len(aktina_kitrino)-1,-1,-1)]
 slope_kitrino,ordinate_kitrino,uncertainty_kitrino,slopeerr_kitrino,ordinateerr_kitrino = lsq(num_daktilioi_kitrino,gonia_kitrino,len(num_daktilioi_kitrino))
-plot_graph(num_daktilioi_kitrino,gonia_kitrino,0,5.37*10**-3,name[3],'graph4',r'$\eta\mu^{2}(\alpha) = f(m)$','Αροιθμός Δακτυλίων (m)',r'$\eta\mu^{2}(\alpha)$',slope_kitrino,slopeerr_kitrino,ordinate_kitrino,ordinateerr_kitrino)
+plot_graph(num_daktilioi_kitrino,gonia_kitrino,0,5.37*10**-3,name[3],'graph4',r'$\eta\mu^{2}(\alpha) = f(m)$','Αριθμός Δακτυλίων (m)',r'$\eta\mu^{2}(\alpha)$',slope_kitrino,slopeerr_kitrino,ordinate_kitrino,ordinateerr_kitrino)
 l_kitrino = d*slope_kitrino/n
 derror_kitrino = np.sqrt((((d)/(n))*slopeerr_kitrino)**2+(((d)/(n))*derror)**2)
 print('Mikos kimatos kitrino : %.3fnm -+ %.3f'%(l_kitrino*10**9,derror_kitrino*10**9))
