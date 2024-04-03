@@ -158,10 +158,11 @@ print('Paxos imeniou deksia : %.5fmm -+ %.5f'%(d_deksia*10**3,derror_deksia*10**
 #-----galazio---------------------------------
 pigi2 = 0.30 #mikos pigis
 mika = 0.412 #apostasi mikas othonis
-aktina_galazio_fake=[0,1,0.8,0.7,0.6,0.5,0.4,0.3,0.2,0.1,0]
-aktina_galazio = np.cumsum(aktina_galazio_fake) + (0.222/2) #euros485-565
-gonia_galazio = [-(i/(np.sqrt(i**2+mika**2)))**2 for i in aktina_galazio]  
-num_daktilioi_galazio = [10,9,8,7,6,5,4,3,2,1,0]
+mika2=0.404
+aktina_galazio_fake=[0,0.016,0.017,0.014,0.014,0.014,0.011,0.011,0.009]
+aktina_galazio = np.cumsum(aktina_galazio_fake) + (0.198/2) #euros485-565
+gonia_galazio = [-(i/(np.sqrt(i**2+mika2**2)))**2 for i in aktina_galazio]  
+num_daktilioi_galazio = [i for i in range(len(aktina_galazio)-1,-1,-1)]
 slope_galazio,ordinate_galazio,uncertainty_galazio,slopeerr_galazio,ordinateerr_galazio = lsq(num_daktilioi_galazio,gonia_galazio,len(num_daktilioi_galazio))
 plot_graph(num_daktilioi_galazio,gonia_galazio,0,0,name[1],'graph2','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)',slope_galazio,slopeerr_galazio,ordinate_galazio,ordinateerr_galazio)  
 l_galazio = d*slope_galazio/n
@@ -182,7 +183,7 @@ print('Mikos kimatos prasino : %.3fnm -+ %.3f'%(l_prasino*10**9,derror_prasino*1
 #-----kitrino---------------------------------
 aktina_kitrino_fake = [0,0.021,0.018,0.018,0.016,0.015,0.013,0.012,0.012,0.011]
 aktina_kitrino = np.cumsum(aktina_kitrino_fake) + (0.22/2) #euros485-565
-gonia_kitrino = [-(i/(np.sqrt(i**2+mika**2)))**2 for i in aktina_kitrino]
+gonia_kitrino = [-(i/(np.sqrt(i**2+mika*2)))**2 for i in aktina_kitrino]
 num_daktilioi_kitrino = [i for i in range(len(aktina_kitrino)-1,-1,-1)]
 slope_kitrino,ordinate_kitrino,uncertainty_kitrino,slopeerr_kitrino,ordinateerr_kitrino = lsq(num_daktilioi_kitrino,gonia_kitrino,len(num_daktilioi_kitrino))
 plot_graph(num_daktilioi_kitrino,gonia_kitrino,0,0,name[3],'graph4','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)',slope_kitrino,slopeerr_kitrino,ordinate_kitrino,ordinateerr_kitrino)
