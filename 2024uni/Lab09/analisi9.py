@@ -150,7 +150,8 @@ num_daktilioi_deksia = [9,8,7,6,5,4,3,2,1,0]
 slope_deksia,ordinate_deksia,uncertainty_deksia,slopeerr_deksia,ordinateerr_deksia = lsq(num_daktilioi_deksia,gonia_deksia,len(num_daktilioi_deksia))
 plot_graph(num_daktilioi_deksia,gonia_deksia,0,0,name[4],'graph5','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)',slope_deksia,slopeerr_deksia,ordinate_deksia,ordinateerr_deksia)
 d_deksia = (l*n)/slope_deksia
-print(d_deksia*10**3)
+derror_deksia = np.sqrt(((l*n)/(slope_deksia**2)*slopeerr_deksia)**2)
+print('Paxos deksia : %.5fmm -+ %.5f'%(d_deksia*10**3,derror_deksia*10**3))
 
 #-----askisi 2---------------------------------
 #------------------------------------------------
