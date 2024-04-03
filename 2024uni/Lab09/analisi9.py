@@ -156,18 +156,20 @@ print('Paxos deksia : %.5fmm -+ %.5f'%(d_deksia*10**3,derror_deksia*10**3))
 #-----askisi 2---------------------------------
 #------------------------------------------------
 #-----galazio---------------------------------
-aktina_galazio = [0,0.01,0.02,0.045,0.07,0.10,0.13,0.17,0.21]
+pigi2 = 0.30 #mikos pigis
+filtro = 0.412 #mikos kimatos
+aktina_galazio = [0.1075,0.1235,0.1385,0.1525,0.1645,0.1765,0.1865,0.1955,0.2045,0.2115,0.2175]
 gonia_galazio = [-(i/(np.sqrt(i**2+L**2)))**2 for i in aktina_galazio]  
-num_daktilioi_galazio = [8,7,6,5,4,3,2,1,0]
+num_daktilioi_galazio = [10,9,8,7,6,5,4,3,2,1,0]
 slope_galazio,ordinate_galazio,uncertainty_galazio,slopeerr_galazio,ordinateerr_galazio = lsq(num_daktilioi_galazio,gonia_galazio,len(num_daktilioi_galazio))
 plot_graph(num_daktilioi_galazio,gonia_galazio,0,0,name[1],'graph2','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)',slope_galazio,slopeerr_galazio,ordinate_galazio,ordinateerr_galazio)  
 l_galazio = d*slope_galazio/n
 derror_galazio = np.sqrt((((d)/(n))*slopeerr_galazio)**2+(((d)/(n))*derror)**2)
 print('Mikos kimatos galazio : %.3fnm -+ %.3f'%(l_galazio*10**9,derror_galazio*10**9))
 #-----prasino---------------------------------
-aktina_prasino = [0,0.01,0.02,0.045,0.07,0.10,0.13,0.17,0.21]
+aktina_prasino = [0.1075,0.1235,0.1385,0.1525,0.1645,0.1765,0.1865,0.1955,0.2045,0.2115,0.2175]
 gonia_prasino = [-(i/(np.sqrt(i**2+L**2)))**2 for i in aktina_prasino]
-num_daktilioi_prasino = [8,7,6,5,4,3,2,1,0]
+num_daktilioi_prasino = [10,9,8,7,6,5,4,3,2,1,0]
 slope_prasino,ordinate_prasino,uncertainty_prasino,slopeerr_prasino,ordinateerr_prasino = lsq(num_daktilioi_prasino,gonia_prasino,len(num_daktilioi_prasino))
 plot_graph(num_daktilioi_prasino,gonia_prasino,0,0,name[2],'graph3','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)',slope_prasino,slopeerr_prasino,ordinate_prasino,ordinateerr_prasino)
 l_prasino = d*slope_prasino/n
