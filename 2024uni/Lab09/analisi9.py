@@ -131,7 +131,9 @@ def linear_plot(x,y,ye,xe,slope,slopeer,ordinate,ordinateer,plotname,fig,graphti
 #------------function call-----------------------
 #------------------------------------------------
 
-#-----askisi 1---------------------------------
+#-----askisi 1--------------------------------
+#---------------------------------------------
+
 pigi = 0.2 #mikos pigis
 l = 589*10**-9 #mikos kimatos
 n = 1.6 #diktis diathlasis
@@ -153,8 +155,9 @@ d_deksia = (l*n)/slope_deksia
 derror_deksia = np.sqrt(((l*n)/(slope_deksia**2)*slopeerr_deksia)**2)
 print('Paxos imeniou deksia : %.5fmm -+ %.5f'%(d_deksia*10**3,derror_deksia*10**3))
 
-#-----askisi 2---------------------------------
-#------------------------------------------------
+#-----askisi 2--------------------------------
+#---------------------------------------------
+
 #-----galazio---------------------------------
 pigi2 = 0.30 #mikos pigis
 mika = 0.412 #apostasi mikas othonis
@@ -181,7 +184,6 @@ print('Mikos kimatos prasino : %.3fnm -+ %.3f'%(l_prasino*10**9,derror_prasino*1
 #-----kitrino---------------------------------
 aktina_kitrino_fake = [0,0.021,0.018,0.018,0.016,0.015,0.013,0.012,0.012,0.011]
 aktina_kitrino = np.cumsum(aktina_kitrino_fake) + (0.222/2) #euros485-565
-print(aktina_kitrino)
 gonia_kitrino = [-(i/(np.sqrt(i**2+mika**2)))**2 for i in aktina_kitrino]
 num_daktilioi_kitrino = [i for i in range(len(aktina_kitrino)-1,-1,-1)]
 slope_kitrino,ordinate_kitrino,uncertainty_kitrino,slopeerr_kitrino,ordinateerr_kitrino = lsq(num_daktilioi_kitrino,gonia_kitrino,len(num_daktilioi_kitrino))
