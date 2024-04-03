@@ -182,7 +182,7 @@ print('Mikos kimatos prasino : %.3fnm -+ %.3f'%(l_prasino*10**9,derror_prasino*1
 #-----kitrino---------------------------------
 aktina_kitrino_fake = [0,0.021,0.018,0.018,0.016,0.015,0.013,0.012,0.012,0.011]
 aktina_kitrino = np.cumsum(aktina_kitrino_fake) + (0.22/2) #euros485-565
-gonia_kitrino = [-(i/(np.sqrt(i**2+L**2)))**2 for i in aktina_kitrino]
+gonia_kitrino = [-(i/(np.sqrt(i**2+mika**2)))**2 for i in aktina_kitrino]
 num_daktilioi_kitrino = [i for i in range(len(aktina_kitrino)-1,-1,-1)]
 slope_kitrino,ordinate_kitrino,uncertainty_kitrino,slopeerr_kitrino,ordinateerr_kitrino = lsq(num_daktilioi_kitrino,gonia_kitrino,len(num_daktilioi_kitrino))
 plot_graph(num_daktilioi_kitrino,gonia_kitrino,0,0,name[3],'graph4','Gonia vs Num_daktilioi','Num_daktilioi','sin^2(gonia)',slope_kitrino,slopeerr_kitrino,ordinate_kitrino,ordinateerr_kitrino)
