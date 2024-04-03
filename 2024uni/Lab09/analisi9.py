@@ -167,8 +167,8 @@ l_galazio = d*slope_galazio/n
 derror_galazio = np.sqrt((((d)/(n))*slopeerr_galazio)**2+(((d)/(n))*derror)**2)
 print('Mikos kimatos galazio : %.3fnm -+ %.3f'%(l_galazio*10**9,derror_galazio*10**9))
 #-----prasino---------------------------------
-aktina_prasino_fake = [0,0.018,0.016,0.015,0.013,0.011,0.01,0.009,0.008,0.006]
-aktina_prasino = np.cumsum(aktina_prasino_fake) + 0.1075
+aktina_prasino_fake = [0,0.02,0.0150,0.014,0.014,0.013,0.013,0.012,0.011,0.01]
+aktina_prasino = np.cumsum(aktina_prasino_fake) + (0.222/2)
 print(aktina_prasino)
 gonia_prasino = [-(i/(np.sqrt(i**2+mika**2)))**2 for i in aktina_prasino]
 num_daktilioi_prasino = [i for i in range(len(aktina_prasino)-1,-1,-1)]
