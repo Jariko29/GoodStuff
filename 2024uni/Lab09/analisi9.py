@@ -53,7 +53,7 @@ expression2 = r'$y = \frac{a}{x + b}$'
 #------------plot graph--------------------------
 #------------------------------------------------
 def plot_graph(x,y,xerr,yerr,plotname,fig,graphtitle,xlab,ylab,slope,slopeer,ordinate,ordinateer):
-    plt.figure(fig) 
+    plt.figure(fig,figsize=[8,6]) 
     plt.gca().set_facecolor('0.88')
     plt.grid(True)
     plt.errorbar(x, y, xerr=xerr,yerr=yerr,fmt='o',markerfacecolor='none', color='black',elinewidth=0.7,label='data')
