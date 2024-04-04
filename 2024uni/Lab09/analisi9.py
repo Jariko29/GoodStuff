@@ -158,6 +158,7 @@ print('Paxos imeniou deksia : %.5fmm -+ %.5f'%(d_deksia*10**3,derror_deksia*10**
 #-----askisi 2--------------------------------
 #---------------------------------------------
 d = (d + d_deksia)/2
+print(d)
 #-----galazio---------------------------------
 pigi2 = 0.30 #mikos pigis
 mika = 0.412 #apostasi mikas othonis
