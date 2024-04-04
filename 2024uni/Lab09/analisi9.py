@@ -170,7 +170,7 @@ num_daktilioi_galazio = [i for i in range(len(aktina_galazio)-1,-1,-1)]
 slope_galazio,ordinate_galazio,uncertainty_galazio,slopeerr_galazio,ordinateerr_galazio = lsq(num_daktilioi_galazio,gonia_galazio,len(num_daktilioi_galazio))
 plot_graph(num_daktilioi_galazio,gonia_galazio,0,5.37*10**-3,name[1],'graph2',r'$\eta\mu^{2}(\alpha) = f(m)$','Αριθμός Δακτυλίων (m)',r'$\eta\mu^{2}(\alpha)$',slope_galazio,slopeerr_galazio,ordinate_galazio,ordinateerr_galazio)  
 l_galazio = d*slope_galazio/n
-derror_galazio = np.sqrt((((d)/(n))*slopeerr_galazio)**2+(((d)/(n))*derror_deksia)**2)
+derror_galazio = np.sqrt((((d)/(n))*slopeerr_galazio)**2+(((d)/(n))*derror)**2)
 print('Mikos kimatos galazio : %.3fnm -+ %.3f'%(l_galazio*10**9,derror_galazio*10**9))
 #-----prasino---------------------------------
 aktina_prasino_fake = [0,0.02,0.0150,0.014,0.014,0.013,0.013,0.012,0.011,0.01]
