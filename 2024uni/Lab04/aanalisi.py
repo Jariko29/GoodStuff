@@ -63,14 +63,13 @@ def func2 (x,a,b):
 #------------------------------------------------
 #------------plot graph--------------------------
 #------------------------------------------------
-def plot_graph(x, y,plotname,fig,fit,p0=None):# slope, ordinate, yerr,
-    if p0 is None:
-        p0=[1,1]
+def plot_graph(x, y,plotname,fig,fit):# slope, ordinate, yerr,
+   
    
     n=len(x)
-    params,params_covariance=curve_fit(fit,x,y,p0=p0)
+    params,params_covariance=curve_fit(func1,x,y,p0=[0,np.pi/6])
     print("parametri:",params) 
-    
+  
 
 
     plt.figure(fig) 
@@ -92,15 +91,11 @@ def plot_graph(x, y,plotname,fig,fit,p0=None):# slope, ordinate, yerr,
 #------------------------------------------------
 #------------function call-----------------------
 n2a=1/0.65490557
-n2b=1/0.888349514
+n2b=1/0.63893538
 print(n2a,'\t',n2b  )
 #------------------------------------------------
 #------------plot graph--------------------------
 #------------------------------------------------
-plot_graph(thetar1,ratio1,'graph1',1,func1,[0,np.pi/6])
-plot_graph(thetar2,ratio2,'graph2',2,func2,[1,np.pi/6])
+plot_graph(thetar1,ratio1,'graph1',1,func1)
+plot_graph(thetar2,ratio2,'graph2',2,func2)
 plot_graph(thetar3,ratio3,'graph3',3,func1)
-
-
-print('slope,ordinate,uncertainty,slopeerr,ordinateerr',lsq(thetar1,ratio1,len(thetar1)))
-print(mean_and_std(thetar1,ratio1))
