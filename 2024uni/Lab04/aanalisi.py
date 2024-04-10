@@ -58,7 +58,7 @@ def mean_and_std(x1,x2):
 #------------------------------------------------
 def func1 (x,a,b):
     return a*np.tan(np.radians(x)-(np.arcsin(b*np.sin(np.radians(x)))))**2/np.tan(np.radians(x)+(np.arcsin(b*np.sin(np.radians(x)))))**2 # fit , change if something else
-expression1 = r'$\frac{I_{\parallel}}{I_{\perp}}=a\frac{tan(\theta-\arcsin(b\sin(\theta)))^2}{tan(\theta+\arcsin(b\sin(\theta)))^2}$'
+expression1 = r'$a\frac{tan(\theta-\arcsin(b\sin(\theta)))^2}{tan(\theta+\arcsin(b\sin(\theta)))^2}$'
 def func2 (x,a,b):
     return a*np.sin(np.radians(x)-(np.arcsin(b*np.sin(np.radians(x)))))**2/np.sin(np.radians(x)+(np.arcsin(b*np.sin(np.radians(x)))))**2 # fit , change if something else
 expression2 = r'$\frac{I_{\parallel}}{I_{\perp}}=a\frac{sin(\theta-\arcsin(b\sin(\theta)))^2}{sin(\theta+\arcsin(b\sin(\theta)))^2}$'
@@ -75,7 +75,7 @@ def plot_graph(x, y,plotname,fig,fit):# slope, ordinate, yerr,
 
 
     plt.figure(fig) 
-    plt.plot(x,fit(x,*params),label='curve fit')
+    plt.plot(x,fit(x,*params),label=expression1)
     plt.gca().set_facecolor('0.88')
     plt.grid(True)
     plt.errorbar(x, y, yerr=0.003,xerr=0.1, label='σφάλμα',fmt='o', color='black',markerfacecolor='none',elinewidth=0.7)
@@ -88,7 +88,7 @@ def plot_graph(x, y,plotname,fig,fit):# slope, ordinate, yerr,
     plt.xlabel('Γωνία (μοίρες)')
     plt.ylabel('Ενταση (Ι-%)')
     plt.legend(loc='best')
-    plt.savefig(plotname, dpi=300)
+    plt.savefig(plotname, dpi=350)
 
 #------------------------------------------------
 #------------function call-----------------------
