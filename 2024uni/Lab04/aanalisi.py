@@ -76,7 +76,7 @@ def plot_graph(x, y,plotname,fig,fit):# slope, ordinate, yerr,
     plt.plot(x,fit(x,*params),label='curve fit')
     plt.gca().set_facecolor('0.88')
     plt.grid(True)
-    #plt.errorbar(x, y, yerr=yerr, label='σφάλμα',fmt='o', color='black',elinewidth=0.7)
+    plt.errorbar(x, y, yerr=0.003,xerr=0.1, label='σφάλμα',fmt='o', color='black',markerfacecolor='none',elinewidth=0.7)
     colors = np.random.rand(n)
     plt.scatter(x, y,label='data')
     #--------------------------
