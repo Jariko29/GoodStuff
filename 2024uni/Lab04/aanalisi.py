@@ -58,8 +58,10 @@ def mean_and_std(x1,x2):
 #------------------------------------------------
 def func1 (x,a,b):
     return a*np.tan(np.radians(x)-(np.arcsin(b*np.sin(np.radians(x)))))**2/np.tan(np.radians(x)+(np.arcsin(b*np.sin(np.radians(x)))))**2 # fit , change if something else
+expression1 = r'$\frac{I_{\parallel}}{I_{\perp}}=a\frac{tan(\theta-\arcsin(b\sin(\theta)))^2}{tan(\theta+\arcsin(b\sin(\theta)))^2}$'
 def func2 (x,a,b):
     return a*np.sin(np.radians(x)-(np.arcsin(b*np.sin(np.radians(x)))))**2/np.sin(np.radians(x)+(np.arcsin(b*np.sin(np.radians(x)))))**2 # fit , change if something else
+expression2 = r'$\frac{I_{\parallel}}{I_{\perp}}=a\frac{sin(\theta-\arcsin(b\sin(\theta)))^2}{sin(\theta+\arcsin(b\sin(\theta)))^2}$'
 #------------------------------------------------
 #------------plot graph--------------------------
 #------------------------------------------------
