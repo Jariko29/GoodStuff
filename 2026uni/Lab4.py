@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 
 
 #metrisis tou Cs
+Emax = []
 mes = dict()
 with Path(__file__).with_name("Lab4_measurements_Cs.txt").open() as f:
     for line in f:
@@ -11,6 +12,7 @@ with Path(__file__).with_name("Lab4_measurements_Cs.txt").open() as f:
             key = float(parts[0])
             value = int(parts[1])
             mes[key] = value
+Emax.append(max((pulse_height for pulse_height in mes if pulse_height > 5000), key=mes.get))
 pulse_heights, counts = zip(*sorted(mes.items()))
 bin_width = pulse_heights[1] - pulse_heights[0]
 
@@ -28,7 +30,7 @@ plt.ylabel("Count")
 plt.title("Pulse-height spectrum")
 plt.tight_layout()
 plt.show()
-plt.savefig(Path(__file__).with_name("Lab4_spectrum_Am.png"))
+plt.savefig(Path(__file__).with_name("Lab4_spectrum_Cs.png"))
 
 
 #metrisis tou Am
@@ -40,6 +42,7 @@ with Path(__file__).with_name("Lab4_measurements_Am.txt").open() as f:
             key = float(parts[0])
             value = int(parts[1])
             mes[key] = value
+Emax.append(max(mes, key=mes.get))
 pulse_heights, counts = zip(*sorted(mes.items()))
 bin_width = pulse_heights[1] - pulse_heights[0]
 
@@ -58,3 +61,295 @@ plt.title("Pulse-height spectrum")
 plt.tight_layout()
 plt.show()
 plt.savefig(Path(__file__).with_name("Lab4_spectrum_Am.png"))
+
+
+#metrisis tou Na
+mes = dict()
+with Path(__file__).with_name("Lab4_measurements_Na.txt").open() as f:
+    for line in f:
+        parts = line.strip().split()
+        if len(parts) == 2:
+            key = float(parts[0])
+            value = int(parts[1])
+            mes[key] = value
+Emax.append(max(mes, key=mes.get))
+pulse_heights, counts = zip(*sorted(mes.items()))
+bin_width = pulse_heights[1] - pulse_heights[0]
+
+plt.figure(figsize=(8, 6))
+plt.bar(
+    pulse_heights,
+    counts,
+    width=bin_width,
+    align="center",
+    edgecolor="black",
+    linewidth=0.6,
+)
+plt.xlabel("Pulse height")
+plt.ylabel("Count")
+plt.title("Pulse-height spectrum")
+plt.tight_layout()
+plt.show()
+plt.savefig(Path(__file__).with_name("Lab4_spectrum_Na.png"))
+
+print("Emax (Cs, Am, Na):", Emax)
+
+known_energies_keV = [661.7, 59.5, 511.0]
+mean_emax = sum(Emax) / len(Emax)
+mean_energy = sum(known_energies_keV) / len(known_energies_keV)
+a = sum(
+    (pulse_height - mean_emax) * (energy - mean_energy)
+    for pulse_height, energy in zip(Emax, known_energies_keV)
+) / sum((pulse_height - mean_emax) ** 2 for pulse_height in Emax)
+b = mean_energy - a * mean_emax
+print(f"Calibration line: E = {a:.6f} * Emax + {b:.6f} keV")
+
+source_labels = ["Cs-137", "Am-241", "Na-22"]
+plt.figure(figsize=(8, 6))
+plt.scatter(Emax, known_energies_keV, color="#287c78", edgecolor="black", zorder=3)
+for pulse_height, energy, source in zip(Emax, known_energies_keV, source_labels):
+    plt.annotate(source, (pulse_height, energy), xytext=(6, 6), textcoords="offset points")
+
+line_x = [min(Emax), max(Emax)]
+line_y = [a * pulse_height + b for pulse_height in line_x]
+plt.plot(line_x, line_y, color="#c41c1c", label=f"E = {a:.6f} Emax  {b:.6f}")
+plt.xlabel("Pulse height (Emax)")
+plt.ylabel("Energy (keV)")
+plt.title("Energy calibration")
+plt.grid(True, alpha=0.3)
+plt.legend()
+plt.tight_layout()
+plt.savefig(Path(__file__).with_name("Lab4_calibration.png"), dpi=300)
+plt.show()
+
+
+#metrisis tou Cs 10deg 500s
+mes = dict()
+with Path(__file__).with_name("Lab4_measurements_Cs10deg_500s.txt").open() as f:
+    for line in f:
+        parts = line.strip().split()
+        if len(parts) == 2:
+            key = float(parts[0])
+            value = int(parts[1])
+            mes[key] = value
+pulse_heights, counts = zip(*sorted(mes.items()))
+bin_width = pulse_heights[1] - pulse_heights[0]
+
+plt.figure(figsize=(8, 6))
+plt.bar(
+    pulse_heights,
+    counts,
+    width=bin_width,
+    align="center",
+    edgecolor="black",
+    linewidth=0.6,
+)
+plt.xlabel("Pulse height")
+plt.ylabel("Count")
+plt.title("Pulse-height spectrum")
+plt.tight_layout()
+plt.show()
+plt.savefig(Path(__file__).with_name("Lab4_spectrum_Cs10deg_500s.png"))
+
+
+#metrisis tou Cs 20deg 600s
+mes = dict()
+with Path(__file__).with_name("Lab4_measurements_Cs20deg_600s.txt").open() as f:
+    for line in f:
+        parts = line.strip().split()
+        if len(parts) == 2:
+            key = float(parts[0])
+            value = int(parts[1])
+            mes[key] = value
+pulse_heights, counts = zip(*sorted(mes.items()))
+bin_width = pulse_heights[1] - pulse_heights[0]
+
+plt.figure(figsize=(8, 6))
+plt.bar(
+    pulse_heights,
+    counts,
+    width=bin_width,
+    align="center",
+    edgecolor="black",
+    linewidth=0.6,
+)
+plt.xlabel("Pulse height")
+plt.ylabel("Count")
+plt.title("Pulse-height spectrum")
+plt.tight_layout()
+plt.show()
+plt.savefig(Path(__file__).with_name("Lab4_spectrum_Cs20deg_600s.png"))
+
+
+#metrisis tou Cs 30deg 600s
+mes = dict()
+with Path(__file__).with_name("Lab4_measurements_Cs30deg_600s.txt").open() as f:
+    for line in f:
+        parts = line.strip().split()
+        if len(parts) == 2:
+            key = float(parts[0])
+            value = int(parts[1])
+            mes[key] = value
+pulse_heights, counts = zip(*sorted(mes.items()))
+bin_width = pulse_heights[1] - pulse_heights[0]
+
+plt.figure(figsize=(8, 6))
+plt.bar(
+    pulse_heights,
+    counts,
+    width=bin_width,
+    align="center",
+    edgecolor="black",
+    linewidth=0.6,
+)
+plt.xlabel("Pulse height")
+plt.ylabel("Count")
+plt.title("Pulse-height spectrum")
+plt.tight_layout()
+plt.show()
+plt.savefig(Path(__file__).with_name("Lab4_spectrum_Cs30deg_600s.png"))
+
+
+#metrisis tou Cs 40deg 600s
+mes = dict()
+with Path(__file__).with_name("Lab4_measurements_Cs40deg_600s.txt").open() as f:
+    for line in f:
+        parts = line.strip().split()
+        if len(parts) == 2:
+            key = float(parts[0])
+            value = int(parts[1])
+            mes[key] = value
+pulse_heights, counts = zip(*sorted(mes.items()))
+bin_width = pulse_heights[1] - pulse_heights[0]
+
+plt.figure(figsize=(8, 6))
+plt.bar(
+    pulse_heights,
+    counts,
+    width=bin_width,
+    align="center",
+    edgecolor="black",
+    linewidth=0.6,
+)
+plt.xlabel("Pulse height")
+plt.ylabel("Count")
+plt.title("Pulse-height spectrum")
+plt.tight_layout()
+plt.show()
+plt.savefig(Path(__file__).with_name("Lab4_spectrum_Cs40deg_600s.png"))
+
+
+#metrisis tou Cs 60deg 600s
+mes = dict()
+with Path(__file__).with_name("Lab4_measurements_Cs60deg_600s.txt").open() as f:
+    for line in f:
+        parts = line.strip().split()
+        if len(parts) == 2:
+            key = float(parts[0])
+            value = int(parts[1])
+            mes[key] = value
+pulse_heights, counts = zip(*sorted(mes.items()))
+bin_width = pulse_heights[1] - pulse_heights[0]
+
+plt.figure(figsize=(8, 6))
+plt.bar(
+    pulse_heights,
+    counts,
+    width=bin_width,
+    align="center",
+    edgecolor="black",
+    linewidth=0.6,
+)
+plt.xlabel("Pulse height")
+plt.ylabel("Count")
+plt.title("Pulse-height spectrum")
+plt.tight_layout()
+plt.show()
+plt.savefig(Path(__file__).with_name("Lab4_spectrum_Cs60deg_600s.png"))
+
+
+#metrisis tou Cs 90deg 600s
+mes = dict()
+with Path(__file__).with_name("Lab4_measurements_Cs90deg_600s.txt").open() as f:
+    for line in f:
+        parts = line.strip().split()
+        if len(parts) == 2:
+            key = float(parts[0])
+            value = int(parts[1])
+            mes[key] = value
+pulse_heights, counts = zip(*sorted(mes.items()))
+bin_width = pulse_heights[1] - pulse_heights[0]
+
+plt.figure(figsize=(8, 6))
+plt.bar(
+    pulse_heights,
+    counts,
+    width=bin_width,
+    align="center",
+    edgecolor="black",
+    linewidth=0.6,
+)
+plt.xlabel("Pulse height")
+plt.ylabel("Count")
+plt.title("Pulse-height spectrum")
+plt.tight_layout()
+plt.show()
+plt.savefig(Path(__file__).with_name("Lab4_spectrum_Cs90deg_600s.png"))
+
+
+#metrisis tou Cs 120deg 600s
+mes = dict()
+with Path(__file__).with_name("Lab4_measurements_Cs120deg_600s.txt").open() as f:
+    for line in f:
+        parts = line.strip().split()
+        if len(parts) == 2:
+            key = float(parts[0])
+            value = int(parts[1])
+            mes[key] = value
+pulse_heights, counts = zip(*sorted(mes.items()))
+bin_width = pulse_heights[1] - pulse_heights[0]
+
+plt.figure(figsize=(8, 6))
+plt.bar(
+    pulse_heights,
+    counts,
+    width=bin_width,
+    align="center",
+    edgecolor="black",
+    linewidth=0.6,
+)
+plt.xlabel("Pulse height")
+plt.ylabel("Count")
+plt.title("Pulse-height spectrum")
+plt.tight_layout()
+plt.show()
+plt.savefig(Path(__file__).with_name("Lab4_spectrum_Cs120deg_600s.png"))
+
+
+#metrisis tou Cs 130deg 600s
+mes = dict()
+with Path(__file__).with_name("Lab4_measurements_Cs130deg_600s.txt").open() as f:
+    for line in f:
+        parts = line.strip().split()
+        if len(parts) == 2:
+            key = float(parts[0])
+            value = int(parts[1])
+            mes[key] = value
+pulse_heights, counts = zip(*sorted(mes.items()))
+bin_width = pulse_heights[1] - pulse_heights[0]
+
+plt.figure(figsize=(8, 6))
+plt.bar(
+    pulse_heights,
+    counts,
+    width=bin_width,
+    align="center",
+    edgecolor="black",
+    linewidth=0.6,
+)
+plt.xlabel("Pulse height")
+plt.ylabel("Count")
+plt.title("Pulse-height spectrum")
+plt.tight_layout()
+plt.show()
+plt.savefig(Path(__file__).with_name("Lab4_spectrum_Cs130deg_600s.png"))
