@@ -118,7 +118,6 @@ line_y = [a * pulse_height + b for pulse_height in line_x]
 plt.plot(line_x, line_y, color="#c41c1c", label=f"E = {a:.6f} Emax  {b:.6f} keV")
 plt.xlabel("Pulse height (Emax)")
 plt.ylabel("Energy (keV)")
-plt.title("Energy calibration")
 plt.grid(True, alpha=0.3)
 plt.legend()
 plt.tight_layout()
@@ -388,20 +387,17 @@ angles = [10, 20, 30, 40, 60, 90, 120, 130]
 E_gamma = 661.7
 me_c_squared_keV = 511.0
 epsilon = E_gamma / me_c_squared_keV
-E_prime_gamma = [
-    E_gamma / (1 + epsilon * (1 - cos(radians(angle))))
-    for angle in angles
-]
+E_prime_gamma = [E_gamma / (1 + epsilon * (1 - cos(radians(angle)))) for angle in angles]
 measured_peak_energies_keV = [a * pulse_height + b for pulse_height in E]
+energy_errors_keV = [5,9,10,11,9,6,3,2]
 print("Predicted E'gamma (keV):", E_prime_gamma)
 
 plt.figure(figsize=(8, 6))
-plt.scatter(
-    angles,
-    measured_peak_energies_keV,
+plt.errorbar(angles,measured_peak_energies_keV,xerr=2,yerr=energy_errors_keV or None,fmt="o",
     color="#287c78",
-    edgecolor="black",
-    label="Measured peak (calibrated)",
+    markeredgecolor="black",
+    capsize=4,
+    label="Μετρημένη τιμή (Cs)",
 )
 plt.scatter(
     angles,
@@ -409,16 +405,52 @@ plt.scatter(
     color="#c41c1c",
     marker="s",
     edgecolor="black",
-    label="Compton prediction",
+    label="Θεωρητική τιμή (Compton)",
 )
-plt.xlabel("Scattering angle (degrees)")
-plt.ylabel("Photon energy (keV)")
-plt.title("Compton-scattered photon energy by angle")
-plt.xticks(angles)
+plt.xlabel("Γωνιά Σκέδασης (degrees)")
+plt.ylabel("Ενέργεια φωτονείου (keV)")
+plt.ylim(0, 700)
+plt.xticks(range(0, 141, 10))
 plt.grid(True, alpha=0.3)
 plt.legend()
-plt.tight_layout()
 plt.savefig(Path(__file__).with_name("Lab4_peak_pulseheight_over_angle.png"), dpi=300)
+plt.show()
+
+Z=55
+r0 = 2.818e-15
+theoretical_angles = list(range(0, 151, 5))
+kn = []
+def calc_kn(angle):
+    return Z*r0**2 * (1/(1+epsilon*(1-cos(radians(angle)))))**2 * ((1 + cos(radians(angle))**2)/2) * (1+(epsilon**2 * (1-cos(radians(angle)))**2)/(1+cos(radians(angle))**2)*(1+epsilon*(1-cos(radians(angle)))))
+for angle in theoretical_angles:
+    kn.append(calc_kn(angle)*10**29)
+print("kn (theoretical scattering cross-section):", kn)
+
+measurement_times_seconds = [500, 600, 600, 600, 600, 600, 600, 600]
+count_rates = []
+for measurement_file, measurement_time in zip(
+    angle_measurement_files, measurement_times_seconds):
+    total_counts = 0
+    with Path(__file__).with_name(measurement_file).open() as f:
+        for line in f:
+            parts = line.strip().split()
+            if len(parts) == 2:
+                total_counts += int(parts[1])
+    count_rates.append(total_counts / measurement_time)
+
+print("I_theta (counts per second):", count_rates)
+plt.figure(figsize=(8, 6))
+plt.scatter(angles, count_rates, color="#287c78", edgecolor="black", label="Μετρημένη τιμή (Cs)")
+plt.errorbar(angles, count_rates, xerr=2,yerr=None, markeredgecolor="black",fmt="o", capsize=4)
+plt.plot(theoretical_angles, kn, color="#c41c1c", label="Klein-Nishina")
+plt.ylabel("Αριθμός Μετρήσεων ανα δευτερόλεπτο (counts/s)")
+plt.xlabel("Γωνιά Σκέδασης (degrees)")
+plt.ylim(0,60)
+plt.xlim(0, 150)
+plt.xticks(range(0, 151, 10))
+plt.grid(True, alpha=0.3)
+plt.legend()
+plt.savefig(Path(__file__).with_name("Lab4_count_rate_over_angle.png"), dpi=300)
 plt.show()
 
 
