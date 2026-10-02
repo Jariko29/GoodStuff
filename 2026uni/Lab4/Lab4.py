@@ -1,5 +1,5 @@
 from pathlib import Path
-from math import cos, radians
+from math import cos,sin, degrees, radians
 import matplotlib.pyplot as plt
 
 
@@ -105,7 +105,7 @@ a = sum(
     for pulse_height, energy in zip(Emax, known_energies_keV)
 ) / sum((pulse_height - mean_emax) ** 2 for pulse_height in Emax)
 b = mean_energy - a * mean_emax
-print(f"Calibration line: E = {a:.6f} * Emax + {b:.6f} keV")
+print(f"Calibration line: E = {a:.4f} * Emax + {b:.1f} keV")
 
 source_labels = ["Cs-137", "Am-241", "Na-22"]
 plt.figure(figsize=(8, 6))
@@ -115,7 +115,7 @@ for pulse_height, energy, source in zip(Emax, known_energies_keV, source_labels)
 
 line_x = [min(Emax), max(Emax)]
 line_y = [a * pulse_height + b for pulse_height in line_x]
-plt.plot(line_x, line_y, color="#c41c1c", label=f"E = {a:.6f} Emax  {b:.6f} keV")
+plt.plot(line_x, line_y, color="#c41c1c", label=f"E = {a:.4f} Emax  {b:.1f} keV")
 plt.xlabel("Pulse height (Emax)")
 plt.ylabel("Energy (keV)")
 plt.grid(True, alpha=0.3)
@@ -452,5 +452,4 @@ plt.grid(True, alpha=0.3)
 plt.legend()
 plt.savefig(Path(__file__).with_name("Lab4_count_rate_over_angle.png"), dpi=300)
 plt.show()
-
 
