@@ -1,105 +1,96 @@
 from pathlib import Path
-from math import sqrt
 
 import matplotlib.pyplot as plt
 
 
-RYDBERG_EV = 13.6
-TARGETS = (
-	("Mo", 42),
-	("Ag", 47),
-	("BaCl2 (Ba)", 56),
-	("SrSO4 (Sr)", 38),
-	("I2 (I)", 53),
-)
+AM_ENERGY_KEV = 59.5
+CS_LOW_ENERGY_KEV = 32.0
+CS_LOW_PEAK_MAX_PULSE_HEIGHT = 200.0
 
 
-def weighted_line_fit(x_values, y_values, uncertainties):
-	weights = [1 / uncertainty**2 for uncertainty in uncertainties]
-	sum_weights = sum(weights)
-	sum_weighted_x = sum(w * x for w, x in zip(weights, x_values))
-	sum_weighted_y = sum(w * y for w, y in zip(weights, y_values))
-	sum_weighted_x2 = sum(w * x**2 for w, x in zip(weights, x_values))
-	sum_weighted_xy = sum(w * x * y for w, x, y in zip(weights, x_values, y_values))
-
-	determinant = sum_weights * sum_weighted_x2 - sum_weighted_x**2
-	if determinant <= 0:
-		raise ValueError("The measurement points do not determine a line.")
-
-	slope = (sum_weights * sum_weighted_xy - sum_weighted_x * sum_weighted_y) / determinant
-	intercept = (sum_weighted_x2 * sum_weighted_y - sum_weighted_x * sum_weighted_xy) / determinant
-	slope_error = sqrt(sum_weights / determinant)
-	intercept_error = sqrt(sum_weighted_x2 / determinant)
-	return slope, intercept, slope_error, intercept_error
+def read_spectrum(filename: str) -> list[tuple[float, int]]:
+    spectrum = []
+    with Path(__file__).with_name(filename).open() as file:
+        next(file, None)
+        for line in file:
+            pulse_height, count = line.split()
+            spectrum.append((float(pulse_height), int(count)))
+    if not spectrum:
+        raise ValueError(f"No spectrum data found in {filename}.")
+    return spectrum
 
 
-def main():
-	# Replace each 0.0 with the measured K-alpha energy in keV, in target order.
-	measured_energies = [
-		0.0,  # Mo
-		0.0,  # Ag
-		0.0,  # BaCl2
-		0.0,  # SrSO4
-		0.0,  # I2
-	]
-	# Enter the matching energy uncertainties in keV, in the same target order.
-	energy_uncertainties = [
-		0.0,  # Mo uncertainty
-		0.0,  # Ag uncertainty
-		0.0,  # BaCl2 uncertainty
-		0.0,  # SrSO4 uncertainty
-		0.0,  # I2 uncertainty
-	]
-	if len(measured_energies) != len(TARGETS) or len(energy_uncertainties) != len(TARGETS):
-		raise ValueError("Enter one energy and uncertainty for every target.")
-	if any(value <= 0 for value in measured_energies + energy_uncertainties):
-		raise ValueError("Replace every 0.0 placeholder with a positive measured value.")
+def main() -> None:
+    am_peak = max(
+        read_spectrum("spectrum_am_600s.txt"),
+        key=lambda point: point[1],
+    )
+    cs_low_peak = max(
+        (
+            point
+            for point in read_spectrum("spectrum_cs_600s.txt")
+            if point[0] < CS_LOW_PEAK_MAX_PULSE_HEIGHT
+        ),
+        key=lambda point: point[1],
+    )
 
-	atomic_numbers = [atomic_number for _, atomic_number in TARGETS]
-	x_values = [(atomic_number - 1) ** 2 for atomic_number in atomic_numbers]
-	theoretical_energies = [RYDBERG_EV * 0.75 * x / 1000 for x in x_values]
-	slope, intercept, slope_error, intercept_error = weighted_line_fit(
-		x_values, measured_energies, energy_uncertainties
-	)
+    slope = (AM_ENERGY_KEV - CS_LOW_ENERGY_KEV) / (
+        am_peak[0] - cs_low_peak[0]
+    )
+    intercept = CS_LOW_ENERGY_KEV - slope * cs_low_peak[0]
 
-	print("\nTarget       Z      (Z-1)^2   Theory (keV)   Measured (keV)")
-	for (target, atomic_number), x, theory, energy, uncertainty in zip(
-		TARGETS, x_values, theoretical_energies, measured_energies, energy_uncertainties
-	):
-		print(
-			f"{target:<12} {atomic_number:>2} {x:>11}"
-			f" {theory:>13.3f}   {energy:.3f} +/- {uncertainty:.3f}"
-		)
+    print(
+        f"Calibration line: E = {slope:.6f} * pulse height "
+        f"+ {intercept:.3f} keV"
+    )
+    print(
+        f"Cs low-energy peak: {cs_low_peak[0]:.2f} "
+        f"(~{CS_LOW_ENERGY_KEV:.1f} keV)"
+    )
+    print(f"Am peak: {am_peak[0]:.2f} ({AM_ENERGY_KEV:.1f} keV)")
 
-	rydberg_ev = slope * 1000 / 0.75
-	rydberg_error_ev = slope_error * 1000 / 0.75
-	print(
-		f"\nWeighted fit: E = ({slope:.6f} +/- {slope_error:.6f})"
-		f" * (Z-1)^2 + ({intercept:.3f} +/- {intercept_error:.3f}) keV"
-	)
-	print(f"Experimental Rydberg constant: {rydberg_ev:.3f} +/- {rydberg_error_ev:.3f} eV")
-	print(f"Accepted value used by the handout: {RYDBERG_EV:.1f} eV")
+    line_x = [0.0, am_peak[0]]
+    line_y = [slope * pulse_height + intercept for pulse_height in line_x]
 
-	line_x = [min(x_values), max(x_values)]
-	line_y = [slope * x + intercept for x in line_x]
-	plt.errorbar(
-		x_values,
-		measured_energies,
-		yerr=energy_uncertainties,
-		fmt="o",
-		capsize=4,
-		label="Measurements",
-	)
-	plt.plot(line_x, line_y, label="Weighted linear fit")
-	plt.xlabel("(Z - 1)^2")
-	plt.ylabel("K-alpha energy (keV)")
-	plt.title("Moseley's law")
-	plt.grid(True, alpha=0.3)
-	plt.legend()
-	plt.tight_layout()
-	plt.savefig(Path(__file__).with_name("Lab5_moseley.png"), dpi=300)
-	plt.show()
+    plt.figure(figsize=(8, 6))
+    plt.scatter(
+        [cs_low_peak[0], am_peak[0]],
+        [CS_LOW_ENERGY_KEV, AM_ENERGY_KEV],
+        color="#287c78",
+        edgecolor="black",
+        zorder=3,
+        label="Calibration peaks",
+    )
+    plt.annotate(
+        "Cs low-energy peak (~32 keV)",
+        (cs_low_peak[0], CS_LOW_ENERGY_KEV),
+        xytext=(6, 6),
+        textcoords="offset points",
+    )
+    plt.annotate(
+        "Am-241 peak (59.5 keV)",
+        (am_peak[0], AM_ENERGY_KEV),
+        xytext=(-6, 6),
+        textcoords="offset points",
+        ha="right",
+    )
+    plt.plot(
+        line_x,
+        line_y,
+        color="#c41c1c",
+        label=f"E = {slope:.6f}P + {intercept:.3f}",
+    )
+    plt.xlabel("Pulse height")
+    plt.ylabel("Energy (keV)")
+    plt.title("Am/Cs Energy Calibration")
+    plt.grid(True, alpha=0.3)
+    plt.legend()
+    plt.tight_layout()
+    output = Path(__file__).with_name("Lab5_calibration.png")
+    plt.savefig(output, dpi=300)
+    plt.close()
+    print(f"Saved calibration graph to {output}")
 
 
 if __name__ == "__main__":
-	main()
+    main()
