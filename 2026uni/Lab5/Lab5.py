@@ -60,7 +60,7 @@ a = sum(
     for pulse_height, energy in zip(Emax, known_energies_keV)
 ) / sum((pulse_height - mean_emax) ** 2 for pulse_height in Emax)
 b = mean_energy - a * mean_emax
-print(f"Calibration line: E = {a:.4f} * Emax {b:.1f} keV")
+print(f"Calibration line: E = {a:.4f} * Emax {b:+.2f} keV")
 
 plt.figure(figsize=(8, 6))
 plt.scatter(Emax, known_energies_keV, color="#287c78", edgecolor="black", zorder=3)
@@ -69,7 +69,7 @@ for pulse_height, energy, source in zip(Emax, known_energies_keV, source_labels)
 
 line_x = [min(Emax), max(Emax)]
 line_y = [a * pulse_height + b for pulse_height in line_x]
-plt.plot(line_x, line_y, color="#c41c1c", label=f"E = {a:.4f} Emax {b:.1f} keV")
+plt.plot(line_x, line_y, color="#c41c1c", label=f"E = {a:.4f} Emax {b:+.2f} keV")
 plt.xlabel("Pulse height (Emax)")
 plt.ylabel("Energy (keV)")
 plt.grid(True, alpha=0.3)
@@ -78,12 +78,79 @@ plt.tight_layout()
 plt.savefig(Path(__file__).with_name("Lab5_calibration.png"), dpi=300)
 plt.close()
 
-# ola ta spectra
-for file_name, output_name in [
-    ("spectrum_Ag_1200s.txt", "Lab5_spectrum_Ag.png"),
-    ("spectrum_BaCl2_1200s.txt", "Lab5_spectrum_BaCl2.png"),
-    ("spectrum_I2_1200s.txt", "Lab5_spectrum_I2.png"),
-    ("spectrum_Mo_1200s.txt", "Lab5_spectrum_Mo.png"),
-    ("spectrum_SrSO_1200s.txt", "Lab5_spectrum_SrSO.png"),
-]:
+sample_spectra = [
+    ("Ag", "spectrum_Ag_1200s.txt", "Lab5_spectrum_Ag.png"),
+    ("BaCl2", "spectrum_BaCl2_1200s.txt", "Lab5_spectrum_BaCl2.png"),
+    ("I2", "spectrum_I2_1200s.txt", "Lab5_spectrum_I2.png"),
+    ("Mo", "spectrum_Mo_1200s.txt", "Lab5_spectrum_Mo.png"),
+    ("SrSO", "spectrum_SrSO_1200s.txt", "Lab5_spectrum_SrSO.png"),
+]
+for _, file_name, output_name in sample_spectra:
     plot_spectrum(file_name, output_name)
+
+# Plot gia tis energeies twn stoixwn
+sample_peak_energies = []
+for sample, file_name, _ in sample_spectra:
+    mes = read_spectrum(file_name)
+    peak_pulse_height = max(mes, key=mes.get)
+    peak_energy = a * peak_pulse_height + b
+    peak_count = mes[peak_pulse_height]
+    sample_peak_energies.append(peak_energy)
+    print(
+        f"{sample} peak: pulse height = {peak_pulse_height:.2f}, "
+        f"count = {peak_count}, energy = {peak_energy:.2f} keV"
+    )
+
+atomic_numbers = [47, 56, 53, 42, 38]
+rydberg_energy_eV = 13.6
+theoretical_energies = [
+    rydberg_energy_eV * (atomic_number - 1) ** 2 * (1 - 1 / 2**2) / 1000
+    for atomic_number in atomic_numbers
+]
+print("Theoretical K-alpha energies (keV):")
+for (sample, _, _), energy in zip(sample_spectra, theoretical_energies):
+    print(f"{sample}: {energy:.2f} keV")
+
+plt.figure(figsize=(8, 6))
+plt.scatter(
+    range(len(sample_spectra)),
+    sample_peak_energies,
+    color="#287c78",
+    edgecolor="black",
+    s=20,
+    zorder=3,
+    label="Experimental",
+)
+plt.scatter(
+    range(len(sample_spectra)),
+    theoretical_energies,
+    color="#c41c1c",
+    marker="s",
+    edgecolor="black",
+    s=20,
+    zorder=3,
+    label="Theoretical",
+)
+for sample_index, peak_energy in enumerate(sample_peak_energies):
+    plt.annotate(
+        f"{peak_energy:.2f} keV",
+        (sample_index, peak_energy),
+        xytext=(7, 5),
+        textcoords="offset points",
+    )
+for sample_index, energy in enumerate(theoretical_energies):
+    plt.annotate(
+        f"{energy:.2f} keV",
+        (sample_index, energy),
+        xytext=(7, -14),
+        textcoords="offset points",
+        color="#a31818",
+    )
+plt.xticks(range(len(sample_spectra)), [sample for sample, _, _ in sample_spectra])
+plt.xlabel("Στόχοι")
+plt.ylabel(r"$E{k_a}$ (keV)")
+plt.grid(True, alpha=0.3)
+plt.legend()
+plt.tight_layout()
+plt.savefig(Path(__file__).with_name("Lab5_calibrated_spectra_peaks.png"), dpi=300)
+plt.close()
