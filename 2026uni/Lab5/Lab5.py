@@ -50,7 +50,7 @@ def calculate_fwhm(spectrum):
     return right_crossing - left_crossing
 
 
-def plot_spectrum(file_name, output_name):
+def plot_spectrum(file_name, output_name, vertical_lines=()):
     mes = read_spectrum(file_name)
     pulse_heights, counts = zip(*sorted(mes.items()))
     bin_width = pulse_heights[1] - pulse_heights[0]
@@ -64,6 +64,8 @@ def plot_spectrum(file_name, output_name):
         edgecolor="black",
         linewidth=0.6,
     )
+    for pulse_height in vertical_lines:
+        plt.axvline(pulse_height, color="red", linestyle="--", linewidth=1.5)
     plt.xlabel("Pulse height")
     plt.ylabel("Count")
     plt.tight_layout()
@@ -119,8 +121,9 @@ sample_spectra = [
     ("Mo", "spectrum_Mo_1200s.txt", "Lab5_spectrum_Mo.png"),
     ("SrSO", "spectrum_SrSO_1200s.txt", "Lab5_spectrum_SrSO.png"),
 ]
-for _, file_name, output_name in sample_spectra:
-    plot_spectrum(file_name, output_name)
+for sample, file_name, output_name in sample_spectra:
+    vertical_lines = (720, 1100) if sample == "SrSO" else ()
+    plot_spectrum(file_name, output_name, vertical_lines=vertical_lines)
 
 # Plot gia tis energeies twn stoixwn
 sample_peak_energies = []
