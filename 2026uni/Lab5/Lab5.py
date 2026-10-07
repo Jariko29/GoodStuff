@@ -66,7 +66,6 @@ def plot_spectrum(file_name, output_name):
     )
     plt.xlabel("Pulse height")
     plt.ylabel("Count")
-    plt.title("Pulse-height spectrum")
     plt.tight_layout()
     plt.savefig(Path(__file__).with_name(output_name), dpi=300)
     plt.close()
@@ -256,7 +255,7 @@ plt.plot(
     label=(
         rf"$E_{{K\alpha}} = {mosley_slope:.5f}(Z-1)^2$ keV"
         "\n"
-        rf"$R_{{exp}} = {experimental_rydberg_eV:.2f}eV"
+        rf"$R_{{\infty}}$ = {experimental_rydberg_eV:.2f} eV"
     ),
 )
 for x_value, peak_energy, sample in zip(mosley_x, mosley_energies, mosley_samples):
