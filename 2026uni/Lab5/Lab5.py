@@ -2,7 +2,6 @@ from pathlib import Path
 from math import cos,sin, degrees, radians
 import matplotlib.pyplot as plt
 
-
 def read_spectrum(file_name):
     mes = {}
     with Path(__file__).with_name(file_name).open() as f:
@@ -13,7 +12,6 @@ def read_spectrum(file_name):
                 value = int(parts[1])
                 mes[key] = value
     return mes
-
 
 def calculate_fwhm(spectrum):
     points = sorted(spectrum.items())
@@ -48,7 +46,6 @@ def calculate_fwhm(spectrum):
     right_crossing = x1 + (half_max - y1) * (x2 - x1) / (y2 - y1)
 
     return right_crossing - left_crossing
-
 
 def plot_spectrum(file_name, output_name, vertical_lines=()):
     mes = read_spectrum(file_name)
