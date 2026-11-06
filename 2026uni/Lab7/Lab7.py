@@ -105,6 +105,7 @@ def plot_spectrum(file_name, output_name, vertical_lines=()):
         edgecolor="black",
         linewidth=0.6,
     )
+    plt.grid(True, alpha=0.3)
     for pulse_height in vertical_lines:
         plt.axvline(pulse_height, color="red", linestyle="--", linewidth=1.5)
     plt.xlabel("Pulse height")
