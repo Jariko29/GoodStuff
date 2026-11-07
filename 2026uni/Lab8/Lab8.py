@@ -33,9 +33,6 @@ def calc_theoretical_b(B,part='',baros=''):
         n = - (10 * 1.44)/(197.3 * b)
     p = np.sqrt(E**2 - 511**2)
     F = (2 * np.pi * n)/(1 - np.exp(-2 * np.pi * n))
-    if part == 'plus':
-        print(f'Eneria T = {np.round(E)}')
-        print(f'Tmax - T = {np.round((Tmax - calc_T(B))**2)}')
     if calc_T(B) > Tmax:
         return float(0)
     else:
@@ -133,6 +130,35 @@ plt.xlabel('Kinetic Energy (keV)')
 plt.ylabel('Count Rate (counts/sec)')
 plt.grid(True,alpha=0.4)
 plt.savefig(Path(__file__).with_name('theoretical b plus.png'),dpi=400)
+
+plt.figure(figsize=[8,6])
+plt.scatter(Tkin,R_bminus,color='red',edgecolor='black',label='Measurements β-',s=27)
+plt.plot(theob,theo_b_minus,color='black',label='theoretical β-')
+plt.xlabel('Kinetic Energy (keV)')
+plt.ylabel('Count Rate (counts/sec)')
+plt.grid(True,alpha=0.4)
+plt.legend()
+plt.savefig(Path(__file__).with_name('Lab 8 - B Minus.png'),dpi=400)
+
+plt.figure(figsize=[8,6])
+plt.scatter(Tkin,R_bplus,color='red',edgecolor='black',label='Measurements β+',s=27)
+plt.plot(theob,theo_b_plus,color='black',label='theoretical β+')
+plt.xlabel('Kinetic Energy (keV)')
+plt.ylabel('Count Rate (counts/sec)')
+plt.grid(True,alpha=0.4)
+plt.legend()
+plt.savefig(Path(__file__).with_name('Lab 8 - B Plus.png'),dpi=400)
+
+plt.figure(figsize=[8,6])
+plt.scatter(Tkin,R_bminus,color='red',edgecolor='black',label='Measurements β-',s=27)
+plt.scatter(Tkin,R_bplus,color='green',edgecolor='black',label='Measurements β+',s=27)
+plt.plot(theob,theo_b_minus,color='tomato',label='theoretical β-')
+plt.plot(theob,theo_b_plus,color='forestgreen',label='theoretical β+')
+plt.xlabel('Kinetic Energy (keV)')
+plt.ylabel('Count Rate (counts/sec)')
+plt.grid(True,alpha=0.4)
+plt.legend()
+plt.savefig(Path(__file__).with_name('Lab 8 - B Minus and B Plus.png'),dpi=400)
 
 
 
