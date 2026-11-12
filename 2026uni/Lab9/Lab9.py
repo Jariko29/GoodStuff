@@ -108,14 +108,15 @@ def get_count(file_name, sel_section=None):
         else:
             return 'wtf is going on here'
 
-
-# Calibration 
+#-----------------------------------------------------------------------------------
+# 2.1 Βαθμονόμηση φάσματος
+#-----------------------------------------------------------------------------------
 Emax = []
 spectrum_name = ["cal_cs_300s.txt", "cal_co_600s.txt"]
 mes = read_spectrum(spectrum_name[0])
 Emax.append(max_pulse(spectrum_name[0], dx=[4000, 5500]))
 mes = read_spectrum(spectrum_name[1])
-Emax.append(max_pulse(spectrum_name[1], dx=[9000, 10000]))
+Emax.append(max_pulse(spectrum_name[1], dx=[8500, 10000]))
 
 known_energies_keV = [662.0, 1333]
 source_labels = ["Cs-137", "Co-60"]
@@ -152,17 +153,31 @@ name_23_co = ['23_co_1thin_300s.txt','23_co_2thin_300s.txt','23_co_1fat_300s.txt
 name_23_cs = ['23_cs_200s.txt','23_cs_1fat_200s.txt','23_cs_2fat_200s.txt','23_cs_3fat_200s.txt','23_cs_4fat_200s.txt']
 name_23_na = ['23_na_200s.txt','23_na_1thin_200s.txt','23_na_2thin_200s.txt','23_na_1fat_200s.txt','23_na_1fat_1thin_200s.txt']
 
-for i in range(len(name_22)):
-    plot_spectrum(name_22[i], name_22[i][:-4]+'.png')
+# for i in range(len(name_22)):
+#     plot_spectrum(name_22[i], name_22[i][:-4]+'.png')
 
-for i in range(len(name_23_co)):
-    plot_spectrum(name_23_co[i], name_23_co[i][:-4]+'.png')
+# for i in range(len(name_23_co)):
+#     plot_spectrum(name_23_co[i], name_23_co[i][:-4]+'.png')
 
-for i in range(len(name_23_cs)):
-    plot_spectrum(name_23_cs[i], name_23_cs[i][:-4]+'.png')
+# for i in range(len(name_23_cs)):
+#     plot_spectrum(name_23_cs[i], name_23_cs[i][:-4]+'.png')
 
-for i in range(len(name_23_na)):
-    plot_spectrum(name_23_na[i], name_23_na[i][:-4]+'.png')
+# for i in range(len(name_23_na)):
+#     plot_spectrum(name_23_na[i], name_23_na[i][:-4]+'.png')
+
+
+#-----------------------------------------------------------------------------------
+# 2.2 Μέτρηση ενεργειακών φασμάτων ακτίνων−γ
+#-----------------------------------------------------------------------------------
+measured_gamma = []
+temp = max_pulse(name_22[0],[8500,9500])
+measured_gamma.append(a*temp+b)
+temp = max_pulse(name_22[1],[4000,5500])
+measured_gamma.append(a*temp+b)
+temp = max_pulse(name_22[2],[8000,9500])
+print(temp)
+measured_gamma.append(a*temp+b)
+print(f'Measured gamma rays Co-60: {measured_gamma[0]} keV, Cs-137: {measured_gamma[1]} keV, Na-22: {measured_gamma[2]} keV')
 
 
 
