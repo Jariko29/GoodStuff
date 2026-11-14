@@ -1,6 +1,7 @@
 from pathlib import Path
 import math as m
 import matplotlib.pyplot as plt
+from matplotlib.ticker import MultipleLocator
 import numpy as np
 
 def read_spectrum(file_name):
@@ -64,6 +65,7 @@ def plot_spectrum(file_name, output_name, vertical_lines=()):
         edgecolor="black",
         linewidth=0.6,
     )
+    plt.gca().xaxis.set_major_locator(MultipleLocator(1000))
     plt.grid(True, alpha=0.3)
     for pulse_height in vertical_lines:
         plt.axvline(pulse_height, color="red", linestyle="--", linewidth=1.5)
@@ -107,6 +109,21 @@ def get_count(file_name, sel_section=None):
             return count_sum
         else:
             return 'wtf is going on here'
+
+def compton(name=''):
+    if name == 'cs':
+        Eg = 662
+    if name == 'co':
+        Eg = 1318.44
+    if name == 'na':
+        Eg = 1250    
+    e = Eg/511
+    T = Eg * (e * (1 - m.cos(m.radians(180))) / (1 + e * (1 - m.cos(m.radians(180)))))
+    return float(T)
+
+def radiation(Io,I,x):
+    m = (1/x) * np.log(Io/I)
+    return float(m)
 
 #-----------------------------------------------------------------------------------
 # 2.1 Βαθμονόμηση φάσματος
@@ -153,16 +170,16 @@ name_23_co = ['23_co_1thin_300s.txt','23_co_2thin_300s.txt','23_co_1fat_300s.txt
 name_23_cs = ['23_cs_200s.txt','23_cs_1fat_200s.txt','23_cs_2fat_200s.txt','23_cs_3fat_200s.txt','23_cs_4fat_200s.txt']
 name_23_na = ['23_na_200s.txt','23_na_1thin_200s.txt','23_na_2thin_200s.txt','23_na_1fat_200s.txt','23_na_1fat_1thin_200s.txt']
 
-# for i in range(len(name_22)):
-#     plot_spectrum(name_22[i], name_22[i][:-4]+'.png')
+#for i in range(len(name_22)):
+#    plot_spectrum(name_22[i], name_22[i][:-4]+'.png')
 
-# for i in range(len(name_23_co)):
-#     plot_spectrum(name_23_co[i], name_23_co[i][:-4]+'.png')
+#for i in range(len(name_23_co)):
+#    plot_spectrum(name_23_co[i], name_23_co[i][:-4]+'.png')
 
-# for i in range(len(name_23_cs)):
-#     plot_spectrum(name_23_cs[i], name_23_cs[i][:-4]+'.png')
+for i in range(len(name_23_cs)):
+    plot_spectrum(name_23_cs[i], name_23_cs[i][:-4]+'.png')
 
-# for i in range(len(name_23_na)):
+#for i in range(len(name_23_na)):
 #     plot_spectrum(name_23_na[i], name_23_na[i][:-4]+'.png')
 
 
@@ -179,6 +196,29 @@ print(temp)
 measured_gamma.append(a*temp+b)
 print(f'Measured gamma rays Co-60: {measured_gamma[0]} keV, Cs-137: {measured_gamma[1]} keV, Na-22: {measured_gamma[2]} keV')
 
+print(f'{compton('cs')} in keV {(compton('cs') + 13.70) / 0.1480} in pulseheight [Cs-137]')
+print(f'{compton('co')} in keV {(compton('co') + 13.70) / 0.1480} in pulseheight [Co-60]')
+print(f'{compton('na')} in keV {(compton('na') + 13.70) / 0.1480} in pulseheight [Na-22]')
+
+print((1333 + 13.70)/0.1480)
+
+entasi = []
+entasi.append(get_count(name_22[0], sel_section=[8500,9600]))
+entasi.append(get_count(name_22[1], sel_section=[4000,5000]))
+entasi.append(get_count(name_22[2], sel_section=[8000,9100]))
+entasi = [i/300 for i in entasi]
+print(entasi)
+
+entasi_co = []
+aporofisi = []
+paxos_co = [1.1508,2.2912,5.5769,6.7277,7.8682,9.0171]
+for name in name_23_co:
+    temp = get_count(name,[8500,9650])
+    entasi_co.append(temp/300)
+print(f'Intensity tou Co-60 {entasi_co}')
+for i in range(len(paxos_co)):
+    aporofisi.append(radiation(entasi[0],entasi_co[i],paxos_co[i]))
+print(f'Sintelestis aporofisis gia Co-60: {np.average(aporofisi)} gia 7554 keV')
 
 
 
